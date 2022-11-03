@@ -1,0 +1,521 @@
+/* ----------------------------------------------------- 
+|   UPDATE -> 15/01/2022
+|   Autor: 
+|       Jorge Emiliano Maldonado
+|
+|   Sobre la libreria y dashboard:  
+|       Esta libreria css fue reciclada de un proyecto mio
+|       y es por eso que encontraras nombres de clases que
+|       no tienen sentido y/o no corresponden al uso del
+|       contenedor.
+|
+|   Contacto:
+|       Instagram.com/JorgeEmilianoM
+|
+|
+--------------------------------------------------------*/
+
+
+
+
+/* ----------------------------------------------------- 
+|   ROOT
+--------------------------------------------------------*/
+:root {
+    --borde: #dddfe2;
+    --cLetra1: #545a5c;
+    --cLetra2: #595d5e;
+    --verde : #97F06C;
+    --verdeOscuro : #5dd477;
+    --celeste : #6ED0F0;
+    --azul : #4e73df;
+    --amarillo : #F0D26A;
+    --lila : #A269F0;
+    --rojo : #F0877D;
+    --blanco : #f9fafc;
+    --oscuro : #222222;
+    --negro : #212529;
+}
+
+/* ----------------------------------------------------- 
+|   Global styles
+--------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    /* font-family: 'Lato', sans-serif; */
+    background-color: #f9fafc;
+}
+a {
+    text-decoration: none;
+}
+/* ----------------------------------------------------- 
+|   HELPERS
+--------------------------------------------------------*/
+.b {
+    border: red solid 1px;
+}
+
+.resaltar {
+    font-weight: 800;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* ----------------------------------------------------- 
+|   General Styles
+--------------------------------------------------------*/
+.contenedor {
+    display: grid;
+    grid-template-columns: 220px auto;
+    min-height: 90vh;
+    margin-top: 53px;
+}
+
+/* ----------------------------------------------------- 
+|   Menu
+--------------------------------------------------------*/
+nav {
+    min-height: 60px;
+}
+.logoPerfil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+}
+
+.logoPerfil .imagenPerfil{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 3px 5px;
+}
+
+.contenedor .navegacion {
+    height: 100%;
+    background-color: var(--negro);
+    color: #f9fafc;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.contenedor .navegacion .c {
+    position: fixed;
+    width: 220px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40vh;
+}
+
+.contenedor .navegacion .c .logo {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 25px;
+    display: none;
+}
+
+.contenedor .navegacion ul {
+    margin: 20px 0 0 0 ;
+    padding-left: 0;
+    list-style: none;
+}
+
+.contenedor .navegacion ul li {
+    margin: 0;
+    padding-left: 15px;
+    font-weight: 300;
+    display: flex;
+    transition: 600ms;
+}
+
+.contenedor .navegacion ul li:hover {
+    background-color: var(--azul);
+    cursor: pointer;
+    transition: 600ms;
+}
+
+.contenedor .navegacion ul li i {
+    margin: 0 5px;
+    padding: 13px 0;
+}
+
+.contenedor .navegacion ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    color: var(--blanco);
+    width: 100%;
+}
+
+.contenedor .navegacion .user {
+    display: flex;
+}
+
+.contenedor .navegacion .user ul {
+    display: flex;
+}
+
+.contenedor .navegacion .user ul li {
+    padding: 0;
+}
+
+.contenedor .navegacion .user ul li a{
+    padding: 0;
+}
+
+.contenedor .navegacion .user ul i {
+    padding: 15px;
+}
+
+.contenedor .navegacion .user ul form button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.menu-btn {
+    position: fixed;
+    cursor: pointer;
+    top: 8px;
+    right: 30px;
+    z-index: 0;
+    display: none;
+    color: #4e4e4e;
+}
+
+.cuerpo{
+    padding: 50px 20px;
+}
+
+#navMenuMovil{
+    display: none;
+}
+
+/* ----------------------------------------------------- 
+|   CONTENEDOR
+--------------------------------------------------------*/
+.content {                          /* Correcciones al .content de bootstrap */
+    z-index: 2;
+    color: var(--cLetra1);
+    padding: 10px;
+    min-height: 100vh;
+}
+
+/* ----------------------------------------------------- 
+|   Estadisticas generales
+--------------------------------------------------------*/
+.content .estadisticasGenerales {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-bottom: 10px;
+    border-bottom: var(--borde) solid 1px;
+}
+.content .estadisticasGenerales .caja {
+    padding-top: 5px;
+    text-align: center;
+}
+.content .estadisticasGenerales .ventas, .gastos, .ganancias {
+    border-right: var(--borde) solid 1px;
+}
+.content .estadisticasGenerales .paraReponer .texto{
+    font-size: 13px;
+}
+.content .estadisticasGenerales .caja .texto {
+    height: 20px;
+    font-weight: 300;
+    color: var(--cLetra2);
+}
+.content .estadisticasGenerales .caja i {
+    font-size: 35px;
+    margin-bottom: 4px;
+}
+.content .estadisticasGenerales .ventas  i{
+    color: var(--azul);
+}
+.content .estadisticasGenerales .gastos  i{
+    color: var(--rojo) ;
+}
+.content .estadisticasGenerales .ganancias  i{
+    color: var(--verdeOscuro);
+}
+.content .estadisticasGenerales .paraReponer  i{
+    color: var(--celeste);
+}
+/* ==========[DATOS GENERALES]================= */
+.content .balanceGeneral {
+    padding: 10px;
+    padding-bottom: 0;
+}
+.content .balanceGeneral .titulo {
+    font-weight: 800;
+    font-size: 15px;
+    padding-bottom: 5px;
+    color: var(--cLetra2);
+}
+.content .balanceGeneral .datos {
+    background-color: #fff;
+}
+.content .balanceGeneral .datos .grid-3 {
+    background-color: #f9fafc;
+}
+.content .balanceGeneral .datos .grid-3 .tabla {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    font-weight: 500;
+    background-color: #fff;
+    border: var(--borde) solid 1px;
+    border-radius: 5px;
+    margin-right: 15px;
+    padding: 15px;
+    border-top: var(--verdeOscuro) solid 4px;
+}
+.content .balanceGeneral .datos .grid-3 .tabla .descripcion, .importe {
+    padding-bottom: 6px;
+    border-bottom: var(--borde) solid 1px;
+    font-weight: 300;
+}
+.content .balanceGeneral .datos .grid-3 .tabla .importe {
+    display: flex;
+    text-align:center;
+    align-items: center;
+}
+.content .balanceGeneral .datos .grid-3 .tabla .nb {
+    border: none;
+}
+.content .balanceGeneral .titulo {
+    font-weight: 800;
+}
+.content .balanceGeneral .datos .titulo {
+    padding-top: 5px;
+    font-weight: 400;
+}
+
+/*========================================================================
+|---------------------------[  Footer       ]------------------------------|
+=========================================================================*/
+footer {
+    margin-top: 20px;
+    bottom: 0;
+    padding: 10px 5px;
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    color: rgb(145, 145, 145);
+}
+footer .derechos {
+    font-size: 13px;
+}
+footer .derechos a {
+    text-decoration: none;
+    color: rgb(125, 185, 235);
+}
+footer .creditos {
+    font-size: 13px;
+    color: rgb(173, 173, 173);
+}
+footer .creditosAdicionales a {
+    text-decoration: none;
+    color: #dfdfdf;
+}
+
+
+/*========================================================================
+|---------------------------[  Version Movil  ]--------------------------|
+=========================================================================*/
+@media ( max-width: 1024px ){
+    /*===========================================================
+    |--------------------[  Index ]-----------------------------|
+    ===========================================================*/
+    .index {
+        padding: 10px;
+    }
+    .index .navegacion {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .index .navegacion .logo .descripcion {
+        text-align: center;
+    }
+    .index .navegacion .menu ul {
+        padding: 10px 0;
+        border-radius: 10px;
+        border-bottom: #e45c5c solid 2px;
+        font-weight: 400;
+        text-align: center;
+    }
+    .contenedor .navegacion .c {
+        grid-template-rows: 80vh;
+    }
+    .index .contenedor {
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+    .index .contenedor .titulos {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        width: 100%;
+    }
+    .index .contenedor .titulos h1 {
+        margin: 0;
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+    .index .contenedor .titulos h2 {
+        font-size: 20px;
+    }
+    .index .contenedor .img {
+        display: flex;
+        justify-content: center;
+    }
+    .index .contenedor img {
+        width: 350px;
+    }
+    /*===========================================================
+    |--------------------[  Login ]-----------------------------|
+    ===========================================================*/
+    .login {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+    .login .caja {
+        width: auto;
+    }
+    .login .caja .logo {
+        margin: 10px 0;
+    }
+    .login .caja h1 {
+        text-align: center;
+    }
+    .login .caja form input[type=text], input[type=password]{
+        width: 100%;
+    }
+    .login .caja form input[type=submit] {
+        width: 100%;
+    }
+    .login .portada {
+        width: 100%;
+        height: 100px;
+    }
+    /*===========================================================
+    |--------------------[  Escritorio ]------------------------|
+    ===========================================================*/
+    .contenedor {
+        transform: translate(-300px);
+        transition: transform .5s ease-in-out ;
+        grid-template-columns: 300px 97%;
+        margin-top: 0px;
+    }
+    .show {
+        transform: translateX(0px); 
+    }
+    /*===========================================================
+    |--------------------[  Menu ]------------------------------|
+    ===========================================================*/
+    .menu-btn {
+        display: flex;
+        position: initial;
+        color: #f2f2f2;
+    }
+    #navMenu {
+        display: none;
+    }
+    #navMenuMovil{
+        display: contents;
+    }
+    /*===========================================================
+    |--------------------[  Content ]----------------------------|
+    ===========================================================*/
+    .content {
+        max-width: 100vw;
+        font-size: 14px;
+    }
+    .content .estadisticasGenerales .paraReponer .texto{
+        font-size: 11px;
+    }
+    /* ==========[Balance General]================= */
+    .content .balanceGeneral .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .content .balanceGeneral .datos .grid-3 .tabla .importe {
+        border-right: none;
+    }
+    .content .balanceGeneral .datos .grid-3 .tabla {
+        border-bottom: var(--borde) solid 1px;
+        margin-bottom: 5px;
+    }
+    /* ==========[Balance todos los meses]================= */
+    .content .balanceMesesAnteriores .dispositivoMovil {
+        display: block;
+        text-align: center;
+        margin: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        background-color: #fff;
+        padding: 5px;
+    }
+    .content .balanceMesesAnteriores .tablaMes {
+    display: none;
+    }
+    /*===========================================================
+    |--------------------[  Ventas ]----------------------------|
+    ===========================================================*/
+    .content .search {
+        grid-template-columns: 1fr;
+        color: var(--cLetra1);
+        place-items: center;
+    }
+    .content .search .menu li {
+        background-color: #4e73df;
+    }
+    .content .search .menu .imprimirVentas {
+        display: none;
+    }
+    .content .ventas {
+        font-size: 10px;
+        margin: 0;
+        padding: 0;
+    }
+    .ventas .titulos, .lista .detalle {
+        font-weight: 400;
+        grid-template-columns: 4fr 3fr 2fr 1fr;
+    }
+    .search .menu ul li {
+        font-weight: 600;
+    }
+    #Num, #fecha, #plista, #ganancia{
+        display: none;
+    }
+    /*===========================================================
+    |--------------------[  Productos ]----------------------------|
+    ===========================================================*/
+    .ventas .productos{
+        font-weight: 600;
+        grid-template-columns: 1fr 5fr 1fr 1fr 1fr ;
+    }
+    /*===========================================================
+    |--------------------[  Clientes ]----------------------------|
+    ===========================================================*/
+    .ventas .clientes {
+        display: grid;
+        grid-template-columns: auto auto ;
+        font-weight: 600;
+    }
+    .ventas .clientes .celda {
+        margin: 5px;
+        padding: 0 10px;
+        border-right: #4e73df solid 1px;
+    }
+}
