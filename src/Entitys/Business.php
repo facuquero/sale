@@ -1,7 +1,7 @@
 <?php
 
 
-class Business extends BusinessData
+class Business 
 {
     
 

@@ -8,7 +8,6 @@ class DB
      */
     public static function query(string $query, bool $fetch = false, string $typeFetch = 'fetch_all')
     {
-        $_SESSION['dev_debug'][] = $query;
         $response = mysqli_query($_SESSION['connection'], $query);
         if ($fetch) {
             switch ($typeFetch) {

@@ -13,7 +13,7 @@ class Core
         
         # Validamos session 
         // validate_session();
-        
+
         # Si la session dió Ok cargamos datos
         load_data();
         
@@ -24,7 +24,9 @@ class Core
     private function loadIncludes()
     {
         try {
-            // require_once CONFIG;
+            require_once 'config_local.php';
+            include('alias.php');
+
 
             #   [Configuración general]
             #   Enlazamos todos los modulos requeridos
@@ -41,7 +43,6 @@ class Core
             #   [Entitys]
             #   Enlazamos todas las entidades
             require("../src/Entitys/User.php");
-            require("../src/Entitys/BusinessData.php");
             require("../src/Entitys/Business.php");
             require("../src/Entitys/Adm.php");
 

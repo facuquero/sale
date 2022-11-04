@@ -4,6 +4,7 @@ require('../config/core.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +19,8 @@ require('../config/core.php');
     <!-- CSS Custom -->
     <link rel="stylesheet" href="../template/assets/style.css">
 </head>
-<body >
+
+<body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-0" id="navMenu">
         <div class="container-fluid">
             <a class="navbar-brand mx-5" href="#">Dashboard</a>
@@ -39,12 +41,14 @@ require('../config/core.php');
                     </li>
                     <li class="nav-item dropdown ml-3 ">
                         <a class="nav-link active dropdown-toggle logoPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                             Cuenta 
-                             <div class="logoIMG"><img class="imagenPerfil" src="assets/img/perfil.jpg" alt="Logo de perfil"></div>
+                            Cuenta
+                            <div class="logoIMG"><img class="imagenPerfil" src="assets/img/perfil.jpg" alt="Logo de perfil"></div>
                         </a>
                         <ul class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Configuracion</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -86,7 +90,7 @@ require('../config/core.php');
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="#">Cerrar sesión</a>
-                                </li>      
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -95,37 +99,57 @@ require('../config/core.php');
                     <div class="card-body py-0 px-0">
                         <ul class="nav">
                             <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addVenta()" role="button">+ Venta</a></li>
-                         
+
                             <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addGasto()" role="button">+ Gasto</a></li>
-                         
+
                             <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addStock()" role="button">+ Gasto de Stock</a></li>
-                          
+
                             <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addCliente()" role="button">+ Cliente</a></li>
-                          
-                            <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addProducto()" role="button">+ Producto</a></li>   
-                          
+
+                            <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addProducto()" role="button">+ Producto</a></li>
+
                         </ul>
                     </div>
                 </div>
                 <form class="d-flex mb-1" onsubmit="event.preventDefault()">
                     <input class="form-control me-2" type="search" name="searchClienteVM" id="searchClienteVM" placeholder="Buscar cliente..." autocomplete="off" aria-label="Search">
-                    <input type="hidden" name="idVM" id="idVM" value="<?=  $_SESSION['user']->info['id'] ?>">
+                    <input type="hidden" name="idVM" id="idVM" value="<?= $_SESSION['user']->info['id'] ?>">
                     <button class="btn btn-outline-success">Search</button>
                     <div class="mx-5"></div>
                 </form>
             </div>
 
-          
-            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">p_lista</th>
+                        <th scope="col">p_venta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($_SESSION['Products']::getProducts() as $product): ?>
+                    <tr>
+                        <th scope="row"><?= $product['id'] ?></th>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= $product['price_list'] ?></td>
+                        <td><?= $product['price_sale'] ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    
+                </tbody>
+            </table>
 
 
-    <!-- font Awasome-->
-    <script src="https://kit.fontawesome.com/fb56d1a6d2.js" crossorigin="anonymous"></script>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- My scripts -->
-    <script src="../temassets/scripts.js"></script>
+            <!-- font Awasome-->
+            <script src="https://kit.fontawesome.com/fb56d1a6d2.js" crossorigin="anonymous"></script>
+            <!-- JQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+            <!-- Bootstrap -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+            <!-- My scripts -->
+            <script src="../temassets/scripts.js"></script>
 </body>
+
 </html>
