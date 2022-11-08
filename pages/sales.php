@@ -23,7 +23,7 @@ require('../config/core.php');
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-0" id="navMenu">
         <div class="container-fluid">
-            <a class="navbar-brand mx-5" href="#">Dashboard</a>
+            <a class="navbar-brand mx-5" href="#">Ventas</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +69,7 @@ require('../config/core.php');
                 <div class="">
                     <div class="logo">GESPRENDER</div>
                     <ul>
-                    <li><a href="products.php"><i class="fas fa-desktop"></i> Escritorio</a></li>
+                        <li><a href="products.php"><i class="fas fa-desktop"></i> Escritorio</a></li>
                         <li><a href="sales.php"><i class="far fa-money-bill-alt"></i> Ventas </a></li>
                         <li><a href="clients.php"><i class="far fa-money-bill-alt"></i> Clientes </a></li>
                         <li><a href="#"><i class="far fa-money-bill-alt"></i> Proovedores </a></li>
@@ -145,6 +145,7 @@ require('../config/core.php');
                     
                 </tbody>
             </table>
+
 
 
             <!-- font Awasome-->

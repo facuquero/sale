@@ -23,7 +23,7 @@ require('../config/core.php');
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-0" id="navMenu">
         <div class="container-fluid">
-            <a class="navbar-brand mx-5" href="#">Dashboard</a>
+            <a class="navbar-brand mx-5" href="#">Ventas</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -69,7 +69,7 @@ require('../config/core.php');
                 <div class="">
                     <div class="logo">GESPRENDER</div>
                     <ul>
-                    <li><a href="products.php"><i class="fas fa-desktop"></i> Escritorio</a></li>
+                        <li><a href="products.php"><i class="fas fa-desktop"></i> Escritorio</a></li>
                         <li><a href="sales.php"><i class="far fa-money-bill-alt"></i> Ventas </a></li>
                         <li><a href="clients.php"><i class="far fa-money-bill-alt"></i> Clientes </a></li>
                         <li><a href="#"><i class="far fa-money-bill-alt"></i> Proovedores </a></li>
@@ -121,30 +121,25 @@ require('../config/core.php');
                     <div class="mx-5"></div>
                 </form>
             </div>
-
+            <button type="button" class="btn btn-primary" style= align left>Crear nuevo cliente</button>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">modelo</th>
-                        <th scope="col">color</th>
-                        <th scope="col">capacidad</th>
+                        <th scope="col">Nombre</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($_SESSION['Products']::getProducts() as $product): ?>
+                    <?php foreach ($_SESSION['Clients']::getClients() as $client): ?>
                     <tr>
-                        <th scope="row"><?= $product['id'] ?></th>
-                        <td><?= $product['nombre'] ?></td>
-                        <td><?= $product['modelo'] ?></td>
-                        <td><?= $product['color'] ?></td>
-                        <td><?= $product['capacidad'] . 'gb' ?></td>
+                        <th scope="row"><?= $client['id'] ?></th>
+                        <td><?= $client['name'] ?></td>
                     </tr>
                     <?php endforeach; ?>
                     
                 </tbody>
             </table>
+
 
 
             <!-- font Awasome-->

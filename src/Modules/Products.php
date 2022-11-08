@@ -11,7 +11,6 @@ class Products
     {
         try {
             $Products = DB::get(['*'] ,'m_products');
-
             return $Products;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
