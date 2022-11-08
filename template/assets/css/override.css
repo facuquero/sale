@@ -1,0 +1,7 @@
+.modal-backdrop {
+    position: inherit;
+}
+
+.modal-content {
+    margin-top: 50%;
+}

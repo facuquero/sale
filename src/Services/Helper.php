@@ -5,7 +5,11 @@ class Helper {
      * @param string $message Message to display
      */
     public static function success(string $message, bool $toast = false): string {
-        return "<script>success('$message', '$toast')</script>";
+        // return "<script>success('$message', '$toast')</script>";
+        return "Swal.fire(
+            '$message',
+            'success'
+          )";
     }
     
     public static function error($x) : string {

@@ -10,20 +10,17 @@ require('../config/core.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doc</title>
-    <!-- bootstrap 4.6 css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- CSS Custom -->
-    <link rel="stylesheet" href="../template/assets/style.css">
+    <?php require_once '../template/sections/head.php'; ?>
+
 </head>
 
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-0" id="navMenu">
         <div class="container-fluid">
-            <a class="navbar-brand mx-5" href="#">Ventas</a>
+            <a class="navbar-brand mx-5" href="#">
+                <img src="../template/assets/img/logo.png" style="width: 120px; margin-right: 35px;">
+                Ventas
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,33 +29,29 @@ require('../config/core.php');
                     <!--  -->
                 </ul>
                 <ul class="navbar-nav logoPerfil">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Agregar</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="javascript:;" onclick="addVenta()" role="button">Agregar Venta</a></li>
-                            <li><a class="dropdown-item" href="javascript:;" onclick="addGasto()" role="button">Agregar Gasto</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown ml-3 ">
-                        <a class="nav-link active dropdown-toggle logoPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cuenta
-                            <div class="logoIMG"><img class="imagenPerfil" src="assets/img/perfil.jpg" alt="Logo de perfil"></div>
-                        </a>
-                        <ul class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Configuracion</a></li>
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
                         </ul>
+                    </div>
+                    <li class="nav-item dropdown ml-3 ">
+                        <a class="nav-link active dropdown-toggle logoPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="logoIMG"><img class="imagenPerfil" src="../template/assets/img/perfil.jpg" alt="Logo de perfil"></div>
+                        </a>
+
                     </li>
                 </ul>
-                <form class="d-flex" onsubmit="event.preventDefault()">
-                    <input class="form-control me-2" type="search" name="searchCliente" id="searchCliente" placeholder="Buscar cliente..." autocomplete="off" aria-label="Search">
-                    <input type="hidden" name="id" id="id" value="1">
-                    <button class="btn btn-outline-success">Search</button>
-                    <div class="mx-5"></div>
-                </form>
+
             </div>
         </div>
     </nav>
@@ -121,7 +114,65 @@ require('../config/core.php');
                     <div class="mx-5"></div>
                 </form>
             </div>
-            <button type="button" class="btn btn-primary" style= align left>Crear nuevo cliente</button>
+            <!-- <button type="button" class="btn btn-primary" style="align-items: right;">Crear nuevo cliente</button> -->
+
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Crear cliente
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear cliente</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="client_name" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="client_name" id="client_name">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">guardar</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script>
+                Swal.mixin({
+                    confirmButtonText: 'Siguiente →',
+                    cancelButtonText: 'omitir',
+                    showCancelButton: true,
+                    progressSteps: ['1', '2', '3']
+                }).queue([{
+                        title: 'Modulo de gestión de clientes',
+                        html: `<p style="text-align: left; padding: 0 7px; font-weight: 400; font-size: 15px;">Hola!😁 <br> Te quiero dar una breve explicación sobre este modulo que has instalado para tu negocio.</p>`
+                    },
+                    {
+                        title: '🤔 Sobre su uso',
+                        html: `<p style="text-align: left; padding: 0 7px; font-weight: 400; font-size: 15px;">Este modulo fue pensado para poder tener los datos de nuestros clientes a mano, poder enviarles de manera rapida un mensaje por whatsapp, saber su correo, instagram, hasta incluso poder dejar una anotación por casos como "Este cliente es moroso" ó "Tiene un saldo a favor" (pequeñas notas que nos ayudan a recordar).</p>`
+                    },
+                    {
+                        title: '😬 Sacale provecho',
+                        html: `<p style="text-align: left; padding: 0 7px; font-weight: 400; font-size: 15px;">
+          Ahora verás que el modulo te aparece en el panel izquierdo. <br>Te invito a sacarle el máximo provecho y en caso de necesitar ayuda, te recuerdo que podes enviarnos un whatsapp con todas tus dudas 😀.</p>`
+                    }
+                ])
+            </script>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -130,26 +181,21 @@ require('../config/core.php');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($_SESSION['Clients']::getClients() as $client): ?>
-                    <tr>
-                        <th scope="row"><?= $client['id'] ?></th>
-                        <td><?= $client['name'] ?></td>
-                    </tr>
+                    <?php foreach ($_SESSION['Clients']::getClients() as $client) : ?>
+                        <tr>
+                            <th scope="row"><?= $client['id'] ?></th>
+                            <td><?= $client['name'] ?></td>
+                        </tr>
                     <?php endforeach; ?>
-                    
+
                 </tbody>
             </table>
+            <?php # require_once '../template/components/products/atajos.php'; 
+            ?>
 
 
 
-            <!-- font Awasome-->
-            <script src="https://kit.fontawesome.com/fb56d1a6d2.js" crossorigin="anonymous"></script>
-            <!-- JQuery -->
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <!-- Bootstrap -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-            <!-- My scripts -->
-            <script src="../temassets/scripts.js"></script>
+            <?php require_once '../template/sections/footer.php'; ?>
 </body>
 
 </html>

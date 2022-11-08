@@ -4,10 +4,11 @@
 function Requests_Controller()
 {   
 
-    # Expenses
-    // Request::getLocal('getProducts', function(){ 
-    //     Products::getProducts(); 
-    // });
+    # Clients
+    Request::getLocal('client_name', function(){ 
+        Clients::addClients(); 
+    });
+    
     
  
     Helper::all_unset($_POST);
