@@ -48,7 +48,7 @@ class Clients
                 $_SESSION['notifications'] = Helper::error('Error el cliente no se pudo actualizar');
             }
         } catch (Exception $e) {
-            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
+            Logger::error('Clients', 'Error in updateClient ->' . $e->getMessage());
         }
     }
 
@@ -61,11 +61,18 @@ class Clients
 
             if ($status_delete) {
                 $_SESSION['notifications'] = Helper::success('Cliente eliminado');
+                Response::json([
+                    'status' => true,
+                    'message' => 'Client delete'
+                ]);
             } else {
                 $_SESSION['notifications'] = Helper::error('Error al tratar de eliminar el cliente');
+                Response::json([
+                    'status' => false
+                ]);
             }
         } catch (Exception $e) {
-            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
+            Logger::error('Clients', 'Error in deleteClient ->' . $e->getMessage());
         }
     }
 }

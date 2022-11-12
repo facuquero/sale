@@ -87,8 +87,8 @@ require('../config/core.php');
                         </a>
                         <form method="POST">
                             <input type="hidden" name="id_client_delete" value="<?= $client['id'] ?>">
-                            <button type="submit" style="border: none; background: transparent;">
-                            <i class="fa fa-trash" style="font-size: 14px;"> </i></button>
+                            <a onclick="delete_client(<?= $client['id'] ?>)" style="border: none; background: transparent;">
+                            <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
                         </form>
                     </td>
                 </tr>
