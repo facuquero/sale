@@ -17,38 +17,108 @@ require('../config/core.php');
 <body>
     <?php require_once '../template/sections/navbar.php'; ?>
 
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Crear producto
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form method="POST">
+                        <div class="row mb-3">
+                            <label for="product_nombre" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="product_nombre" id="product_nombre">
+                            </div>
+                            <label for="product_modelo" class="col-sm-2 col-form-label">Modelo</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="product_modelo" id="product_modelo">
+                            </div>
+                            <label for="product_color" class="col-sm-2 col-form-label">Color</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="product_color" id="product_color">
+                            </div>
+                            <label for="product_capacidad" class="col-sm-2 col-form-label">Capacidad</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="product_capacidad" id="product_capacidad">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Product</th>
-                <th scope="col">modelo</th>
-                <th scope="col">color</th>
-                <th scope="col">capacidad</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Color</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($_SESSION['Products']::getProducts() as $product): ?>
-            <tr>
-                <th scope="row">
-                    <?= $product['id'] ?>
-                </th>
-                <td>
-                    <?= $product['nombre'] ?>
-                </td>
-                <td>
-                    <?= $product['modelo'] ?>
-                </td>
-                <td>
-                    <?= $product['color'] ?>
-                </td>
-                <td>
-                    <?= $product['capacidad'] . 'gb' ?>
-                </td>
-            </tr>
+        
+        <?php foreach ($_SESSION['Products']::getProducts() as $product) : ?>
+                <!-- Offcanvas -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $product['id'] ?>" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <input type="hidden" name="product_update_id" value="<?= $product['id'] ?>">
+
+                                <label for="exampleInputEmail1" class="form-label">Product</label>
+                                <input type="text" class="form-control" name="product_update_nombre" value="<?= $product['nombre'] ?>">
+
+                                <label for="exampleInputEmail1" class="form-label">Modelo</label>
+                                <input type="text" class="form-control" name="product_update_modelo" value="<?= $product['modelo'] ?>">
+
+                                <label for="exampleInputEmail1" class="form-label">Color</label>
+                                <input type="text" class="form-control" name="product_update_color" value="<?= $product['color'] ?>">
+
+                                <label for="exampleInputEmail1" class="form-label">Capacidad</label>
+                                <input type="text" class="form-control" name="product_update_capacidad" value="<?= $product['capacidad'] ?>">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+                <tr>
+                    <th scope="row"><?= $product['id'] ?></th>
+                    <td><?= $product['nombre'] ?></td>
+                    <td><?= $product['modelo'] ?></td>
+                    <td><?= $product['color'] ?></td>
+                    <td><?= $product['capacidad'] ?></td>
+                    <td style="display: flex; gap: 20px; align-items: center;">
+                        <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
+                            <i class="fa fa-pencil-square"></i>
+                        </a>
+                        <form method="POST">
+                            <input type="hidden" name="id_product_delete" value="<?= $product['id'] ?>">
+                            <button type="submit" style="border: none; background: transparent;">
+                            <i class="fa fa-trash" style="font-size: 14px;"> </i></button>
+                        </form>
+                    </td>
+                </tr>
             <?php endforeach; ?>
 
-        </tbody>
     </table>
 
 

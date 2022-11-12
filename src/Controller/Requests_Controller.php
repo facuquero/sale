@@ -15,8 +15,15 @@ function Requests_Controller()
         Clients::deleteClient(); 
     });
     
-    
- 
+    #Products
+    Request::getLocal('product_nombre', function(){ 
+        Products::addProducts();
+    });
+
+    Request::getLocal('product_update_id', function(){ 
+        Products::updateProduct();
+    });
+
     Helper::all_unset($_POST);
     Helper::all_unset($_GET);
 }
