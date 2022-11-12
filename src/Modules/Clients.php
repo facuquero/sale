@@ -30,7 +30,7 @@ class Clients
 
 
         } catch (Exception $e) {
-            Logger::error('Clients', 'Error in add_product ->' . $e->getMessage());
+            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
     }
  

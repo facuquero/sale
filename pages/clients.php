@@ -16,9 +16,6 @@ require('../config/core.php');
 
 <body>
 <?php require_once '../template/sections/navbar.php'; ?>
-            <!-- <button type="button" class="btn btn-primary" style="align-items: right;">Crear nuevo cliente</button> -->
-
-
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -65,12 +62,14 @@ require('../config/core.php');
                         <tr>
                             <th scope="row"><?= $client['id'] ?></th>
                             <td><?= $client['name'] ?></td>
-                            <td><i class ="fa fa-pencil-square"></i>       <i class="fa fa-trash"></td>
+                            <td><a href = "#"><i class ="fa fa-pencil-square"></i></a>       <a href = "#"> <i class="fa fa-trash"> </i></a>  </td>
                         </tr>
                     <?php endforeach; ?>
 
                 </tbody>
             </table>
+            
+            
             <?php # require_once '../template/components/products/atajos.php'; ?>
 
             <?php require_once '../template/sections/footer.php'; ?>
