@@ -81,15 +81,12 @@ require('../config/core.php');
                 <tr>
                     <th scope="row"><?= $client['id'] ?></th>
                     <td><?= $client['name'] ?></td>
-                    <td style="display: flex; gap: 20px; align-items: center;">
+                    <td>
                         <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $client['id'] ?>" role="button" aria-controls="offcanvas_<?= $client['id'] ?>">
                             <i class="fa fa-pencil-square"></i>
                         </a>
-                        <form method="POST">
-                            <input type="hidden" name="id_client_delete" value="<?= $client['id'] ?>">
-                            <a onclick="delete_client(<?= $client['id'] ?>)" style="border: none; background: transparent;">
-                            <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
-                        </form>
+                        <a onclick="delete_client(<?= $client['id'] ?>)" style="border: none; background: transparent;">
+                        <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
