@@ -50,6 +50,7 @@ class Core
             #   Enlazamos tododos los modulos
             require("../src/Modules/Products.php");
             require("../src/Modules/Clients.php");
+            require("../src/Modules/Proveedor.php");
             
             #   [Controllers]
             #   Enlazamos todos los controladores

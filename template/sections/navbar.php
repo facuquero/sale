@@ -52,7 +52,7 @@
                     <li><a href="products.php"><i class="fas fa-desktop"></i> Escritorio</a></li>
                     <li><a href="sales.php"><i class="fa fa-handshake"></i> Ventas </a></li>
                     <li><a href="clients.php"><i class="fa fa-suitcase"></i> Clientes </a></li>
-                    <li><a href="#"><i class="fa fa-truck"></i> Proovedores </a></li>
+                    <li><a href="supplier.php"><i class="fa fa-truck"></i> Proovedores </a></li>
                     <li><a href="#"><i class="fa fa-exclamation-triangle"></i> Pendientes </a></li>
                     <li><a href="#"><i class="fa fa-line-chart"></i> Balance </a></li>
                     <li><a href="#"><i class="far fa-money-bill-alt"></i> Gasto </a></li>

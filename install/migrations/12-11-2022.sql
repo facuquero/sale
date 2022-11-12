@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2022 at 11:53 PM
+-- Generation Time: Nov 08, 2022 at 01:28 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -50,8 +50,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `name`) VALUES
-(1, 'Jose'),
-(2, 'Jorge');
+(1, 'Jose');
 
 -- --------------------------------------------------------
 
@@ -89,8 +88,7 @@ CREATE TABLE `m_products` (
 
 INSERT INTO `m_products` (`id`, `nombre`, `modelo`, `color`, `capacidad`, `categoria`) VALUES
 (1, 'Iphone', '11 PRO', 'Gold', 64, 'telefono'),
-(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono'),
-(3, 'Iphone', '11 Pro', 'Gold', 54, 'telefono');
+(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono');
 
 -- --------------------------------------------------------
 
@@ -133,17 +131,10 @@ CREATE TABLE `stock` (
 
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `cc` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `supplier`
---
-
-INSERT INTO `supplier` (`id`, `nombre`, `cc`, `alias`) VALUES
-(2, 'Nombre', 'CC', 'Alias');
 
 -- --------------------------------------------------------
 
@@ -244,7 +235,7 @@ ALTER TABLE `balance`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `logs`
@@ -256,7 +247,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `m_products`
 --
 ALTER TABLE `m_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pending`
@@ -274,7 +265,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

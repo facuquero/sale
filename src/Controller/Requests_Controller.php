@@ -28,6 +28,18 @@ function Requests_Controller()
         Products::deleteProduct(); 
     });
 
+        #Proveedor
+    Request::getLocal('proveedor_nombre', function(){ 
+        Proveedor::addProveedor();
+    });
+
+    Request::getLocal('proveedor_update_id', function(){ 
+        Proveedor::updateProveedor();
+    });
+
+    Request::getLocal('id_proveedor_delete', function(){ 
+        Proveedor::deleteProveedor(); 
+    });
     Helper::all_unset($_POST);
     Helper::all_unset($_GET);
 }
