@@ -110,11 +110,8 @@ require('../config/core.php');
                         <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
                             <i class="fa fa-pencil-square"></i>
                         </a>
-                        <form method="POST">
-                            <input type="hidden" name="id_product_delete" value="<?= $product['id'] ?>">
-                            <button type="submit" style="border: none; background: transparent;">
-                            <i class="fa fa-trash" style="font-size: 14px;"> </i></button>
-                        </form>
+                        <a onclick="delete_product(<?= $product['id'] ?>)" style="border: none; background: transparent;">
+                            <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

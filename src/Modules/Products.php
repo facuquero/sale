@@ -55,12 +55,34 @@ class Products
                 'id' => $id
             ]);
             if ($update_status) {
-                $_SESSION['notifications'] = Helper::success('Cliente actualizado');
+                $_SESSION['notifications'] = Helper::success('Producto actualizado');
             } else {
-                $_SESSION['notifications'] = Helper::error('Error el cliente no se pudo actualizar');
+                $_SESSION['notifications'] = Helper::error('Error el producto no se pudo actualizar');
             }
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
     } 
+
+    public static function deleteProduct()
+    {
+        try {
+            $id = $_REQUEST['id_product_delete'];
+            $status_delete = DB::deleteById('m_products', $id);
+            if ($status_delete) {
+                $_SESSION['notifications'] = Helper::success('Producto eliminado');
+                Response::json([
+                    'status' => true,
+                    'message' => 'Product delete'
+                ]);
+            } else {
+                $_SESSION['notifications'] = Helper::error('Error al tratar de eliminar el producto');
+                Response::json([
+                    'status' => false
+                ]);
+            }
+        } catch (Exception $e) {
+            Logger::error('Products', 'Error in deleteProduct ->' . $e->getMessage());
+        }
+    }
 }

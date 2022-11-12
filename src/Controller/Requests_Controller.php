@@ -24,6 +24,10 @@ function Requests_Controller()
         Products::updateProduct();
     });
 
+    Request::getLocal('id_product_delete', function(){ 
+        Products::deleteProduct(); 
+    });
+
     Helper::all_unset($_POST);
     Helper::all_unset($_GET);
 }
