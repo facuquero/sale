@@ -70,51 +70,51 @@ require('../config/core.php');
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        
+
         <?php foreach ($_SESSION['Products']::getProducts() as $product) : ?>
-                <!-- Offcanvas -->
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $product['id'] ?>" aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <input type="hidden" name="product_update_id" value="<?= $product['id'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Product</label>
-                                <input type="text" class="form-control" name="product_update_nombre" value="<?= $product['nombre'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Modelo</label>
-                                <input type="text" class="form-control" name="product_update_modelo" value="<?= $product['modelo'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Color</label>
-                                <input type="text" class="form-control" name="product_update_color" value="<?= $product['color'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Capacidad</label>
-                                <input type="text" class="form-control" name="product_update_capacidad" value="<?= $product['capacidad'] ?>">
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
-                    </div>
+            <!-- Offcanvas -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $product['id'] ?>" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-                <tr>
-                    <th scope="row"><?= $product['id'] ?></th>
-                    <td><?= $product['nombre'] ?></td>
-                    <td><?= $product['modelo'] ?></td>
-                    <td><?= $product['color'] ?></td>
-                    <td><?= $product['capacidad'] ?></td>
-                    <td style="display: flex; gap: 20px; align-items: center;">
-                        <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
-                            <i class="fa fa-pencil-square"></i>
-                        </a>
-                        <a onclick="delete_product(<?= $product['id'] ?>)" style="border: none; background: transparent;">
-                            <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+                <div class="offcanvas-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <input type="hidden" name="product_update_id" value="<?= $product['id'] ?>">
+
+                            <label for="exampleInputEmail1" class="form-label">Product</label>
+                            <input type="text" class="form-control" name="product_update_nombre" value="<?= $product['nombre'] ?>">
+
+                            <label for="exampleInputEmail1" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" name="product_update_modelo" value="<?= $product['modelo'] ?>">
+
+                            <label for="exampleInputEmail1" class="form-label">Color</label>
+                            <input type="text" class="form-control" name="product_update_color" value="<?= $product['color'] ?>">
+
+                            <label for="exampleInputEmail1" class="form-label">Capacidad</label>
+                            <input type="text" class="form-control" name="product_update_capacidad" value="<?= $product['capacidad'] ?>">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+            <tr>
+                <th scope="row"><?= $product['id'] ?></th>
+                <td><?= $product['nombre'] ?></td>
+                <td><?= $product['modelo'] ?></td>
+                <td><?= $product['color'] ?></td>
+                <td><?= $product['capacidad'] ?></td>
+                <td>
+                    <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
+                        <i class="fa fa-pencil-square"></i>
+                    </a>
+                    <a onclick="delete_product(<?= $product['id'] ?>)" style="border: none; background: transparent;">
+                        <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
 
     </table>
 
