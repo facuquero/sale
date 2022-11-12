@@ -5,3 +5,8 @@
 .modal-content {
     margin-top: 50%;
 }
+
+
+.fixed-top {
+    z-index: 2;
+}
