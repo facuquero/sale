@@ -207,14 +207,14 @@ require('../config/core.php');
             <td style="gap: 20px; align-items: center;">
                 <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $gastoFijo['id'] ?>" role="button"
                     aria-controls="offcanvas_<?= $gastoFijo['id'] ?>">
-                    <i class="fa fa-pencil-square"></i>
+                    <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
-                <button type="button"  data-bs-toggle="modal"
+                <button style="border: none; background: transparent;" type="button"  data-bs-toggle="modal"
                     data-bs-target="#modal_confirmar_pagado_<?= $gastoFijo['id'] ?>">
-                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                   <a href = #> <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> </a>
                 </button>
-                <a onclick="delete_gasto_fijo(<?= $gastoFijo['id'] ?>)" style="border: none; background: transparent;">
-                    <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
+                <a href = # onclick="delete_gasto_fijo(<?= $gastoFijo['id'] ?>)" style="border: none; background: transparent;">
+                    <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash"> </i></a>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -288,11 +288,11 @@ require('../config/core.php');
             <td style="gap: 20px; align-items: center;">
                 <a data-bs-toggle="offcanvas" href="#offcanvasvariable_<?= $gastoVariable['id'] ?>" role="button"
                     aria-controls="offcanvas_<?= $gastoVariable['id'] ?>">
-                    <i class="fa fa-pencil-square"></i>
+                    <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
-                <a onclick="delete_gasto_variable(<?= $gastoVariable['id'] ?>)"
+                <a href = # onclick="delete_gasto_variable(<?= $gastoVariable['id'] ?>)"
                     style="border: none; background: transparent;">
-                    <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
+                    <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash"> </i></a>
             </td>
         </tr>
         <?php endforeach; ?>

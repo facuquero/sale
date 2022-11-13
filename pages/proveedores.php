@@ -99,10 +99,10 @@ require('../config/core.php');
                     <td><?= $proveedor['alias'] ?></td>
                     <td style="display: flex; gap: 20px; align-items: center;">
                         <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $proveedor['id'] ?>" role="button" aria-controls="offcanvas_<?= $proveedor['id'] ?>">
-                            <i class="fa fa-pencil-square"></i>
+                            <i  data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa-pencil-square-o"></i>
                         </a>
-                        <a onclick="delete_proveedor(<?= $proveedor['id'] ?>)" style="border: none; background: transparent;">
-                            <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
+                        <a href = # onclick="delete_proveedor(<?= $proveedor['id'] ?>)" style="border: none; background: transparent;">
+                            <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"  class="fa fa-trash"> </i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

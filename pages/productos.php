@@ -108,10 +108,10 @@ require('../config/core.php');
                 <td><?= $product['capacidad'] ?></td>
                 <td>
                     <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
-                        <i class="fa fa-pencil-square"></i>
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                     </a>
-                    <a onclick="delete_product(<?= $product['id'] ?>)" style="border: none; background: transparent;">
-                        <i class="fa fa-trash" style="font-size: 14px;"> </i></a>
+                    <a href = # onclick="delete_product(<?= $product['id'] ?>)" style="border: none; background: transparent;">
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"  class="fa fa-trash" > </i></a>
                 </td>
             </tr>
         <?php endforeach; ?>
