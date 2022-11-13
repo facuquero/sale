@@ -1,5 +1,5 @@
 <?php
-class Clients
+class Clientes
 {
 
     function __construct()
@@ -63,7 +63,7 @@ class Clients
                 $_SESSION['notifications'] = Helper::success('Cliente eliminado');
                 Response::json([
                     'status' => true,
-                    'message' => 'Client delete'
+                    'message' => 'Cliente delete'
                 ]);
             } else {
                 $_SESSION['notifications'] = Helper::error('Error al tratar de eliminar el cliente');

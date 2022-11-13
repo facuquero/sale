@@ -65,12 +65,12 @@ require('../config/core.php');
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <?php if(!empty($_SESSION['Proveedor']::getProveedores())) : ?> 
-        <?php foreach ($_SESSION['Proveedor']::getProveedores() as $proveedor) : ?>
+        <?php if(!empty($_SESSION['Proveedores']::getProveedores())) : ?> 
+        <?php foreach ($_SESSION['Proveedores']::getProveedores() as $proveedor) : ?>
                 <!-- Offcanvas -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $proveedor['id'] ?>" aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar proveedor</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">

@@ -1,5 +1,5 @@
 <?php
-class Proveedor
+class Proveedores
 {
 
     function __construct()

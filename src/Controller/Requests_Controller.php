@@ -6,40 +6,64 @@ function Requests_Controller()
 
     # Clients
     Request::getLocal('client_name', function(){ 
-        Clients::addClients(); 
+        Clientes::addClients(); 
     });
     Request::getLocal('client_update', function(){ 
-        Clients::updateClient(); 
+        Clientes::updateClient(); 
     });
     Request::getLocal('id_client_delete', function(){ 
-        Clients::deleteClient(); 
+        Clientes::deleteClient(); 
     });
     
     #Products
     Request::getLocal('product_nombre', function(){ 
-        Products::addProducts();
+        Productos::addProducts();
     });
 
     Request::getLocal('product_update_id', function(){ 
-        Products::updateProduct();
+        Productos::updateProduct();
     });
 
     Request::getLocal('id_product_delete', function(){ 
-        Products::deleteProduct(); 
+        Productos::deleteProduct(); 
     });
 
         #Proveedor
     Request::getLocal('proveedor_nombre', function(){ 
-        Proveedor::addProveedor();
+        Proveedores::addProveedor();
     });
 
     Request::getLocal('proveedor_update_id', function(){ 
-        Proveedor::updateProveedor();
+        Proveedores::updateProveedor();
     });
 
     Request::getLocal('id_proveedor_delete', function(){ 
-        Proveedor::deleteProveedor(); 
+        Proveedores::deleteProveedor(); 
     });
+     # Gastos
+    Request::getLocal('gasto_fijo_concepto', function(){
+        Gastos::addGastoFijo();
+    });
+    Request::getLocal('gasto_variable_concepto', function(){
+        Gastos::addGastoVariable();
+    });
+
+    Request::getLocal('gasto_fijo_update_id', function(){ 
+        Gastos::updateGastoFijo();
+    });
+
+    Request::getLocal('gasto_variable_update_id', function(){ 
+        Gastos::updateGastoVariable();
+    });
+
+    Request::getLocal('id_gasto_fijo_delete', function(){ 
+        Gastos::deleteGastoFijo(); 
+    });
+
+    Request::getLocal('id_gasto_variable_delete', function(){ 
+        Gastos::deleteGastoVariable(); 
+    });
+
     Helper::all_unset($_POST);
     Helper::all_unset($_GET);
 }

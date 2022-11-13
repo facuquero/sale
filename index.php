@@ -1,6 +1,6 @@
 <?php
 // require('config/core.php');
-header('location: pages/products.php');
+header('location: pages/productos.php');
 
 ?>
 <!DOCTYPE html>
