@@ -1,11 +1,11 @@
 <?php
 
 function verify_login(){
-    if((isset($_POST['firebase_email']) && isset($_POST['firebase_uid']))){
+    if((isset($_REQUEST['firebase_email']) && isset($_REQUEST['firebase_uid']))){
         
         require('./config/config_local.php');
         $data = false;
-        $email = $_POST['firebase_email'];
+        $email = $_REQUEST['firebase_email'];
         $RES = mysqli_query($_SESSION['connection'], "SELECT id, uid FROM users WHERE email = '$email'");
         $data = $RES->fetch_array(MYSQLI_ASSOC);
         if(!$data){
@@ -15,7 +15,7 @@ function verify_login(){
             ];
             echo json_encode($response); die;
         }
-        if($data['uid'] == $_POST['firebase_uid']){
+        if($data['uid'] == $_REQUEST['firebase_uid']){
             
             $_SESSION['id'] = $data['id'];
             $response = [

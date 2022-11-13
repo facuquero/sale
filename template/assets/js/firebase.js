@@ -60,7 +60,7 @@ firebaseAuth.getRedirectResult(auth)
         if (responseFirebase) {
             $.ajax({
                 url: RUTE_AUTH,
-                type: 'POST',
+                type: 'GET',
                 data: {
                     firebase_email: responseFirebase.user.email,
                     firebase_uid: responseFirebase.user.uid

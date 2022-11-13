@@ -11,8 +11,8 @@ try {
     require_once 'src/Entitys/User.php';
     require_once 'src/Entitys/Business.php';
     require_once 'src/Controller/NotificationsController.php';
-
-    if (isset($_POST['firebase_email'])) {
+    
+    if (isset($_REQUEST['firebase_email'])) {
         require('./src/Security/validations.php');
         verify_login();
     }
