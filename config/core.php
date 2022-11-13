@@ -12,7 +12,7 @@ class Core
         $this->loadIncludes();
         
         # Validamos session 
-        // validate_session();
+        validate_session();
 
         # Si la session dió Ok cargamos datos
         load_data();
