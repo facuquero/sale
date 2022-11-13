@@ -12,7 +12,7 @@ try {
     require_once 'src/Entitys/Business.php';
     require_once 'src/Controller/NotificationsController.php';
     
-    if (isset($_REQUEST['firebase_email'])) {
+    if (isset($_REQUEST['login_email'])) {
         require('./src/Security/validations.php');
         verify_login();
     }
@@ -59,19 +59,13 @@ try {
         <form>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" name="login_email">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Clave</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="login_password">
             </div>
             <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Entrar</button>
-            <button style="width: 100%; padding: 10px; border-radius: 10px;" class="my-3">
-                <a href="#" id="googleLogin" style="text-decoration: none;">
-                    <img src="https://gesprender.com/app/template/assets/img/iconos/googleIcon.svg" alt="Google Icon" width="30px">
-                    Ingresar con Google
-                </a>
-            </button>
         </form>
     </div>
 
