@@ -4,8 +4,7 @@
             <img src="../template/assets/img/logo.png" style="width: 120px; margin-right: 35px;">
             Ventas
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,29 +12,19 @@
                 <!--  -->
             </ul>
             <ul class="navbar-nav logoPerfil">
-                <!-- Example single danger button -->
-                <div class="btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Action
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                <li class="nav-item dropdown ml-3 ">
+                    <a class="nav-link active dropdown-toggle logoPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="logoIMG"><img class="imagenPerfil" src="../template/assets/img/perfil.jpg" alt="Logo de perfil"></div>
+                    </a>
+                    <ul class="dropdown-menu" style="left: -150%;">
+                        <!-- <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </li> -->
+                        <li><a class="dropdown-item" href="?salir=1">Salir</a></li>
                     </ul>
-                </div>
-                <li class="nav-item dropdown ml-3 ">
-                    <a class="nav-link active dropdown-toggle logoPerfil" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="logoIMG"><img class="imagenPerfil" src="../template/assets/img/perfil.jpg"
-                                alt="Logo de perfil"></div>
-                    </a>
-
                 </li>
             </ul>
 
@@ -80,34 +69,6 @@
                     </nav>
                 </div>
             </div>
-            <div class="card mb-2">
-                <div class="card-body py-0 px-0">
-                    <ul class="nav">
-                        <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addVenta()"
-                                role="button"> Venta</a></li>
-
-                        <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addGasto()"
-                                role="button"> Gasto</a></li>
-
-                        <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addStock()"
-                                role="button"> Gasto de Stock</a></li>
-
-                        <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addCliente()"
-                                role="button"> Cliente</a></li>
-
-                        <li class="nav-item"><a class="nav-link py-1 px-1" href="javascript:;" onclick="addProducto()"
-                                role="button"> Producto</a></li>
-
-                    </ul>
-                </div>
-            </div>
-            <form class="d-flex mb-1" onsubmit="event.preventDefault()">
-                <input class="form-control me-2" type="search" name="searchClienteVM" id="searchClienteVM"
-                    placeholder="Buscar cliente..." autocomplete="off" aria-label="Search">
-                <input type="hidden" name="idVM" id="idVM" value="<?= $_SESSION['user']->info['id'] ?>">
-                <button class="btn btn-outline-success">Search</button>
-                <div class="mx-5"></div>
-            </form>
         </div>
 
         <!-- <script>

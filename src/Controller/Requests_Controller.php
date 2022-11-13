@@ -64,6 +64,14 @@ function Requests_Controller()
         Gastos::deleteGastoVariable(); 
     });
 
+
+    # General
+    Request::getLocal('salir', function(){ 
+        session_destroy();
+        
+        header("Location: ../");
+    });
+
     Helper::all_unset($_POST);
     Helper::all_unset($_GET);
 }

@@ -206,7 +206,7 @@ nav {
 |   CONTENEDOR
 --------------------------------------------------------*/
 .content {                          /* Correcciones al .content de bootstrap */
-    z-index: 2;
+    z-index: 1;
     color: var(--cLetra1);
     padding: 10px;
     min-height: 100vh;

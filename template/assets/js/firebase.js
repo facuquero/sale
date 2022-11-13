@@ -41,7 +41,7 @@ $('#submit-singin').on('click', function () {
                     firebase_uid: userCredential.user.uid
                 },
                 success: function (response) {
-                    window.location.href = "./pages/products.php";
+                    window.location.href = "./pages/productos.php";
                 }
             });
         })
@@ -68,7 +68,7 @@ firebaseAuth.getRedirectResult(auth)
                 success: function (response) {
                     let res = JSON.parse(response);
                     if (res.ok) {
-                        window.location.href = "./pages/products.php";
+                        window.location.href = "./pages/productos.php";
                     } else {
                         if (res.message == 'Verification failed') {
                             error('No tenes acceso');
