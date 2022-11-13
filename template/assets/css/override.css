@@ -6,7 +6,9 @@
     margin-top: 50%;
 }
 
-
+.modal{
+    background-color: #00000061;
+}
 .fixed-top {
     z-index: 2;
 }
