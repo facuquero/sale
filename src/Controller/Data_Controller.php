@@ -3,8 +3,10 @@
 
 function load_data(){
     # Principal entities
-    $_SESSION['Products'] = new Products();
-    $_SESSION['Clients'] = new Clients();
+    $_SESSION['Productos'] = new Productos();
+    $_SESSION['Clientes'] = new Clientes();
+    $_SESSION['Proveedores'] = new Proveedores();
+    $_SESSION['Gastos'] = new Gastos();
 
 }
 

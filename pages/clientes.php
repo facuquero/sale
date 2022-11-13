@@ -60,11 +60,12 @@ require('../config/core.php');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($_SESSION['Clients']::getClients() as $client) : ?>
+        <?php if(!empty($_SESSION['Clientes']::getClients())) : ?> 
+            <?php foreach ($_SESSION['Clientes']::getClients() as $client) : ?>
                 <!-- Offcanvas -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $client['id'] ?>" aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar cliente</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -90,7 +91,7 @@ require('../config/core.php');
                     </td>
                 </tr>
             <?php endforeach; ?>
-
+            <?php endif; ?>
         </tbody>
     </table>
 

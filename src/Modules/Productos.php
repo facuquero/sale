@@ -1,5 +1,5 @@
 <?php
-class Products
+class Productos
 {
 
     function __construct()
@@ -11,7 +11,7 @@ class Products
     {
         try {
             $Products = DB::get(['*'] ,'m_products');
-            return $Products;
+            return is_bool($Products) ? $Products = [] : $Products;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
         }

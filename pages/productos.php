@@ -70,12 +70,12 @@ require('../config/core.php');
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-
-        <?php foreach ($_SESSION['Products']::getProducts() as $product) : ?>
+        <?php if(!empty($_SESSION['Productos']::getProducts())) : ?> 
+        <?php foreach ($_SESSION['Productos']::getProducts() as $product) : ?>
             <!-- Offcanvas -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $product['id'] ?>" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar producto</h5>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -115,7 +115,7 @@ require('../config/core.php');
                 </td>
             </tr>
         <?php endforeach; ?>
-
+        <?php endif; ?>
     </table>
 
 

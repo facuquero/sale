@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 06:53 PM
+-- Generation Time: Nov 08, 2022 at 01:28 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -50,53 +50,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `name`) VALUES
-(3, 'jose');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gastos_fijos`
---
-
-CREATE TABLE `gastos_fijos` (
-  `id` int(11) NOT NULL,
-  `concepto` varchar(255) NOT NULL,
-  `monto` float NOT NULL,
-  `fecha_pago` datetime DEFAULT NULL,
-  `fecha_vencimiento` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `gastos_fijos`
---
-
-INSERT INTO `gastos_fijos` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(5, 'Concepto 2', 35.4, '0000-00-00 00:00:00', '2022-11-10 00:00:00'),
-(6, 'Concepto 3', 300, '0000-00-00 00:00:00', '2022-11-10 00:00:00'),
-(7, 'Concepto 1', 350.05, '0000-00-00 00:00:00', '2022-11-17 00:00:00'),
-(8, 'Jano', 45, '0000-00-00 00:00:00', '2022-11-19 00:00:00'),
-(9, 'Mutual', 233333000, '0000-00-00 00:00:00', '2023-05-12 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gastos_variables`
---
-
-CREATE TABLE `gastos_variables` (
-  `id` int(11) NOT NULL,
-  `concepto` varchar(255) NOT NULL,
-  `monto` float NOT NULL,
-  `fecha_pago` datetime DEFAULT NULL,
-  `fecha_vencimiento` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `gastos_variables`
---
-
-INSERT INTO `gastos_variables` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(5, 'Variable 2', 563.65, '0000-00-00 00:00:00', '2022-11-19 00:00:00');
+(1, 'Jose');
 
 -- --------------------------------------------------------
 
@@ -134,8 +88,7 @@ CREATE TABLE `m_products` (
 
 INSERT INTO `m_products` (`id`, `nombre`, `modelo`, `color`, `capacidad`, `categoria`) VALUES
 (1, 'Iphone', '11 PRO', 'Gold', 64, 'telefono'),
-(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono'),
-(3, 'Iphone', '11 Pro', 'Gold', 54, 'telefono');
+(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono');
 
 -- --------------------------------------------------------
 
@@ -178,18 +131,10 @@ CREATE TABLE `stock` (
 
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `cc` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `supplier`
---
-
-INSERT INTO `supplier` (`id`, `nombre`, `cc`, `alias`) VALUES
-(5, 'Proovedor 1', '', ''),
-(24, 'Proveedor2', 'cuenta corriente', 'alias');
 
 -- --------------------------------------------------------
 
@@ -229,18 +174,6 @@ ALTER TABLE `balance`
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `gastos_fijos`
---
-ALTER TABLE `gastos_fijos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `gastos_variables`
---
-ALTER TABLE `gastos_variables`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -302,19 +235,7 @@ ALTER TABLE `balance`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `gastos_fijos`
---
-ALTER TABLE `gastos_fijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `gastos_variables`
---
-ALTER TABLE `gastos_variables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `logs`
@@ -326,7 +247,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `m_products`
 --
 ALTER TABLE `m_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pending`
@@ -344,7 +265,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

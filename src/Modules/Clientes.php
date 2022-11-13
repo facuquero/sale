@@ -1,5 +1,5 @@
 <?php
-class Clients
+class Clientes
 {
 
     function __construct()
@@ -10,7 +10,7 @@ class Clients
     {
         try {
             $Clients = DB::get(['*'], 'client');
-            return $Clients;
+            return is_bool($Clients) ? $Clients = [] : $Clients;
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add_product ->' . $e->getMessage());
         }
@@ -63,7 +63,7 @@ class Clients
                 $_SESSION['notifications'] = Helper::success('Cliente eliminado');
                 Response::json([
                     'status' => true,
-                    'message' => 'Client delete'
+                    'message' => 'Cliente delete'
                 ]);
             } else {
                 $_SESSION['notifications'] = Helper::error('Error al tratar de eliminar el cliente');

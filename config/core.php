@@ -48,8 +48,10 @@ class Core
 
             #   [Modules]
             #   Enlazamos tododos los modulos
-            require("../src/Modules/Products.php");
-            require("../src/Modules/Clients.php");
+            require("../src/Modules/Productos.php");
+            require("../src/Modules/Clientes.php");
+            require("../src/Modules/Proveedores.php");
+            require("../src/Modules/Gastos.php");
             
             #   [Controllers]
             #   Enlazamos todos los controladores
