@@ -54,7 +54,7 @@ require('../config/core.php');
             </div>
         </div>
     </div>
-
+    
     <table class="table">
         <thead>
             <tr>
@@ -65,7 +65,7 @@ require('../config/core.php');
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        
+        <?php if(!empty($_SESSION['Proveedor']::getProveedores())) : ?> 
         <?php foreach ($_SESSION['Proveedor']::getProveedores() as $proveedor) : ?>
                 <!-- Offcanvas -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $proveedor['id'] ?>" aria-labelledby="offcanvasExampleLabel">
@@ -108,6 +108,7 @@ require('../config/core.php');
             <?php endforeach; ?>
 
     </table>
+    <?php endif; ?>
 
 
     <?php require_once '../template/sections/footer.php'; ?>

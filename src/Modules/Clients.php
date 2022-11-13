@@ -10,7 +10,7 @@ class Clients
     {
         try {
             $Clients = DB::get(['*'], 'client');
-            return $Clients;
+            return is_bool($Clients) ? $Clients = [] : $Clients;
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add_product ->' . $e->getMessage());
         }

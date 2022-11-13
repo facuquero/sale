@@ -11,7 +11,7 @@ class Proveedor
     {
         try {
             $Proveedor = DB::get(['*'] ,'supplier');
-            return $Proveedor;
+            return is_bool($Proveedor) ? $Proveedor = [] : $Proveedor;
         } catch (Exception $e) {
             Logger::error('Proveedor', 'Error in add_proveedor ->' . $e->getMessage());
         }

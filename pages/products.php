@@ -70,7 +70,7 @@ require('../config/core.php');
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-
+        <?php if(!empty($_SESSION['Products']::getProducts())) : ?> 
         <?php foreach ($_SESSION['Products']::getProducts() as $product) : ?>
             <!-- Offcanvas -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $product['id'] ?>" aria-labelledby="offcanvasExampleLabel">
@@ -115,7 +115,7 @@ require('../config/core.php');
                 </td>
             </tr>
         <?php endforeach; ?>
-
+        <?php endif; ?>
     </table>
 
 

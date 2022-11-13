@@ -60,6 +60,7 @@ require('../config/core.php');
             </tr>
         </thead>
         <tbody>
+        <?php if(!empty($_SESSION['Clients']::getClients())) : ?> 
             <?php foreach ($_SESSION['Clients']::getClients() as $client) : ?>
                 <!-- Offcanvas -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $client['id'] ?>" aria-labelledby="offcanvasExampleLabel">
@@ -90,7 +91,7 @@ require('../config/core.php');
                     </td>
                 </tr>
             <?php endforeach; ?>
-
+            <?php endif; ?>
         </tbody>
     </table>
 
