@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 02:34 AM
+-- Generation Time: Nov 13, 2022 at 06:53 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,32 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `project_sale`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accesorios`
---
-
-CREATE TABLE `accesorios` (
-  `id` int(11) NOT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `modelos` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `accesorios`
---
-
-INSERT INTO `accesorios` (`id`, `tipo`, `modelos`) VALUES
-(1, 'Funda anti-shock  ', '7/8'),
-(3, 'Funda anti-shock  ', '7/8 PLUS'),
-(4, 'Funda anti-shock  ', 'X/XS'),
-(5, 'Funda anti-shock  ', 'XS MAX'),
-(6, 'Silicone Case', '7/8'),
-(7, 'Silicone Case', '7/8 PLUS'),
-(8, 'Silicone Case', 'X/XS'),
-(9, 'Silicone Case', 'XS MAX');
 
 -- --------------------------------------------------------
 
@@ -68,19 +42,15 @@ CREATE TABLE `balance` (
 
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `telefono` varchar(40) NOT NULL,
-  `ciudad` varchar(255) NOT NULL,
-  `n_comisionista` varchar(30) NOT NULL
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`id`, `name`, `telefono`, `ciudad`, `n_comisionista`) VALUES
-(6, 'Pepito', '', '', ''),
-(7, 'a', '', '', '');
+INSERT INTO `client` (`id`, `name`) VALUES
+(3, 'jose');
 
 -- --------------------------------------------------------
 
@@ -101,19 +71,11 @@ CREATE TABLE `gastos_fijos` (
 --
 
 INSERT INTO `gastos_fijos` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(11, 'Seguro', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(12, 'Mutual', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 'Alquiler departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 'Expensas departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'Agua departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 'Wi fi departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 'Luz departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 'Alquiler oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 'Expensas oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 'Agua oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 'Luz oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 'Jano', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 'Otro', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(5, 'Concepto 2', 35.4, '0000-00-00 00:00:00', '2022-11-10 00:00:00'),
+(6, 'Concepto 3', 300, '0000-00-00 00:00:00', '2022-11-10 00:00:00'),
+(7, 'Concepto 1', 350.05, '0000-00-00 00:00:00', '2022-11-17 00:00:00'),
+(8, 'Jano', 45, '0000-00-00 00:00:00', '2022-11-19 00:00:00'),
+(9, 'Mutual', 233333000, '0000-00-00 00:00:00', '2023-05-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -134,12 +96,7 @@ CREATE TABLE `gastos_variables` (
 --
 
 INSERT INTO `gastos_variables` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(5, 'Variable 2', 563.65, '0000-00-00 00:00:00', '2022-11-19 00:00:00'),
-(6, 'Variable ', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, '3', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, '5', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 'd', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 'a', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(5, 'Variable 2', 563.65, '0000-00-00 00:00:00', '2022-11-19 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -155,6 +112,30 @@ CREATE TABLE `logs` (
   `product` int(11) NOT NULL,
   `seller` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_products`
+--
+
+CREATE TABLE `m_products` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modelo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `capacidad` int(11) NOT NULL,
+  `categoria` enum('telefono','accesorio') COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `m_products`
+--
+
+INSERT INTO `m_products` (`id`, `nombre`, `modelo`, `color`, `capacidad`, `categoria`) VALUES
+(1, 'Iphone', '11 PRO', 'Gold', 64, 'telefono'),
+(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono'),
+(3, 'Iphone', '11 Pro', 'Gold', 54, 'telefono');
 
 -- --------------------------------------------------------
 
@@ -175,10 +156,10 @@ CREATE TABLE `pending` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock_telefonos`
+-- Table structure for table `stock`
 --
 
-CREATE TABLE `stock_telefonos` (
+CREATE TABLE `stock` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -198,41 +179,17 @@ CREATE TABLE `stock_telefonos` (
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `telefono` varchar(255) NOT NULL
+  `cc` varchar(255) NOT NULL,
+  `alias` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`id`, `nombre`, `telefono`) VALUES
-(5, 'Proovedor 1', ''),
-(24, 'Proveedor2', 'cuenta corriente');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `telefonos`
---
-
-CREATE TABLE `telefonos` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modelo` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `capacidad` int(11) NOT NULL,
-  `categoria` enum('telefono','accesorio') COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `telefonos`
---
-
-INSERT INTO `telefonos` (`id`, `nombre`, `modelo`, `color`, `capacidad`, `categoria`) VALUES
-(1, 'Iphone', '11 PRO', 'Gold', 64, 'telefono'),
-(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono'),
-(3, 'Iphone', '11 Pro', 'Gold', 54, 'telefono'),
-(6, 'Iphone', '3232', 'Gold', 21, 'telefono');
+INSERT INTO `supplier` (`id`, `nombre`, `cc`, `alias`) VALUES
+(5, 'Proovedor 1', '', ''),
+(24, 'Proveedor2', 'cuenta corriente', 'alias');
 
 -- --------------------------------------------------------
 
@@ -246,13 +203,6 @@ CREATE TABLE `users` (
   `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `fullname`, `uid`) VALUES
-(1, 'facuquero@gmail.com', 'Facu Quero', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
@@ -268,12 +218,6 @@ CREATE TABLE `user_roles` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `accesorios`
---
-ALTER TABLE `accesorios`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `balance`
@@ -308,15 +252,21 @@ ALTER TABLE `logs`
   ADD KEY `seller` (`seller`);
 
 --
+-- Indexes for table `m_products`
+--
+ALTER TABLE `m_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pending`
 --
 ALTER TABLE `pending`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stock_telefonos`
+-- Indexes for table `stock`
 --
-ALTER TABLE `stock_telefonos`
+ALTER TABLE `stock`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`);
 
@@ -324,12 +274,6 @@ ALTER TABLE `stock_telefonos`
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `telefonos`
---
-ALTER TABLE `telefonos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -349,12 +293,6 @@ ALTER TABLE `user_roles`
 --
 
 --
--- AUTO_INCREMENT for table `accesorios`
---
-ALTER TABLE `accesorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
 -- AUTO_INCREMENT for table `balance`
 --
 ALTER TABLE `balance`
@@ -364,19 +302,19 @@ ALTER TABLE `balance`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `gastos_fijos`
 --
 ALTER TABLE `gastos_fijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `gastos_variables`
 --
 ALTER TABLE `gastos_variables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `logs`
@@ -385,15 +323,21 @@ ALTER TABLE `logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `m_products`
+--
+ALTER TABLE `m_products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `pending`
 --
 ALTER TABLE `pending`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `stock_telefonos`
+-- AUTO_INCREMENT for table `stock`
 --
-ALTER TABLE `stock_telefonos`
+ALTER TABLE `stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -403,16 +347,10 @@ ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `telefonos`
---
-ALTER TABLE `telefonos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
@@ -428,14 +366,14 @@ ALTER TABLE `user_roles`
 -- Constraints for table `logs`
 --
 ALTER TABLE `logs`
-  ADD CONSTRAINT `product` FOREIGN KEY (`product`) REFERENCES `telefonos` (`id`),
+  ADD CONSTRAINT `product` FOREIGN KEY (`product`) REFERENCES `m_products` (`id`),
   ADD CONSTRAINT `seller` FOREIGN KEY (`seller`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `stock_telefonos`
+-- Constraints for table `stock`
 --
-ALTER TABLE `stock_telefonos`
-  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `telefonos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `stock`
+  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `m_products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

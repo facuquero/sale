@@ -63,7 +63,18 @@ function Requests_Controller()
     Request::getLocal('id_gasto_variable_delete', function(){ 
         Gastos::deleteGastoVariable(); 
     });
+#######accesorios
+Request::getLocal('accesorio_tipo', function(){ 
+    Accesorios::addAccesorio();
+});
 
+Request::getLocal('accesorio_update_id', function(){ 
+    Accesorios::updateAccesorio();
+});
+
+Request::getLocal('id_accesorio_delete', function(){ 
+    Accesorios::deleteAccesorio(); 
+});
 
     # General
     Request::getLocal('salir', function(){ 

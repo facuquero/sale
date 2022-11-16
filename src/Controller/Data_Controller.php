@@ -7,6 +7,7 @@ function load_data(){
     $_SESSION['Clientes'] = new Clientes();
     $_SESSION['Proveedores'] = new Proveedores();
     $_SESSION['Gastos'] = new Gastos();
+    $_SESSION['Accesorios'] = new Accesorios();
 
 }
 

@@ -10,7 +10,7 @@ class Productos
     public static function getProducts():? array
     {
         try {
-            $Products = DB::get(['*'] ,'m_products');
+            $Products = DB::get(['*'] ,'telefonos');
             return is_bool($Products) ? $Products = [] : $Products;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
@@ -24,7 +24,7 @@ class Productos
             $color  = $_REQUEST['product_color'];
             $capacidad = $_REQUEST['product_capacidad'];
 
-            DB::insert('m_products', [
+            DB::insert('telefonos', [
                 'nombre' => $nombre,
                 'modelo' => $modelo,
                 'color' => $color,
@@ -46,7 +46,7 @@ class Productos
             $capacidad = $_REQUEST['product_update_capacidad'];
             $color = $_REQUEST['product_update_color'];
            # ddd([$_REQUEST]);
-            $update_status = DB::update('m_products', [
+            $update_status = DB::update('telefonos', [
                 'nombre' => $nombre,
                 'color' => $color,
                 'modelo' => $modelo,
@@ -68,7 +68,7 @@ class Productos
     {
         try {
             $id = $_REQUEST['id_product_delete'];
-            $status_delete = DB::deleteById('m_products', $id);
+            $status_delete = DB::deleteById('telefonos', $id);
             if ($status_delete) {
                 $_SESSION['notifications'] = Helper::success('Producto eliminado');
                 Response::json([

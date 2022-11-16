@@ -19,14 +19,14 @@ require('../config/core.php');
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Crear proveedor
+        Crear accesorio
     </button>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear proveedor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Crear accesorio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -34,13 +34,13 @@ require('../config/core.php');
 
                     <form method="POST">
                         <div class="row mb-3">
-                            <label for="proveedor_nombre" class="col-sm-2 col-form-label">Nombre</label>
+                            <label for="accesorio_tipo" class="col-sm-2 col-form-label">Tipo</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="proveedor_nombre" id="proveedor_nombre">
+                                <input type="text" class="form-control" name="accesorio_tipo" id="accesorio_tipo">
                             </div>
-                            <label for="proveedor_telefono" class="col-sm-2 col-form-label">Telefono</label>
+                            <label for="accesorio_modelos" class="col-sm-2 col-form-label">Modelos</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="proveedor_telefono" id="proveedor_telefono">
+                                <input type="text" class="form-control" name="accesorio_modelos" id="accesorio_modelos">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -50,34 +50,34 @@ require('../config/core.php');
             </div>
         </div>
     </div>
-    
+
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Telefono</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Modelos</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-        <?php if(!empty($_SESSION['Proveedores']::getProveedores())) : ?> 
-        <?php foreach ($_SESSION['Proveedores']::getProveedores() as $proveedor) : ?>
+        <?php if(!empty($_SESSION['Accesorios']::getAccesorios())) : ?> 
+        <?php foreach ($_SESSION['Accesorios']::getAccesorios() as $accesorio) : ?>
                 <!-- Offcanvas -->
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $proveedor['id'] ?>" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $accesorio['id'] ?>" aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar proveedor</h5>
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar accesorio</h5>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <form method="POST">
                             <div class="mb-3">
-                                <input type="hidden" name="proveedor_update_id" value="<?= $proveedor['id'] ?>">
+                                <input type="hidden" name="accesorio_update_id" value="<?= $accesorio['id'] ?>">
 
-                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="proveedor_update_nombre" value="<?= $proveedor['nombre'] ?>">
+                                <label for="exampleInputEmail1" class="form-label">Tipo</label>
+                                <input type="text" class="form-control" name="accesorio_update_tipo" value="<?= $accesorio['tipo'] ?>">
 
-                                <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" name="proveedor_update_telefono" value="<?= $proveedor['telefono'] ?>">
+                                <label for="exampleInputEmail1" class="form-label">Modelos</label>
+                                <input type="text" class="form-control" name="accesorio_update_modelos" value="<?= $accesorio['modelos'] ?>">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -85,14 +85,14 @@ require('../config/core.php');
                     </div>
                 </div>
                 <tr>
-                    <th scope="row"><?= $proveedor['id'] ?></th>
-                    <td><?= $proveedor['nombre'] ?></td>
-                    <td><?= $proveedor['telefono'] ?></td>
+                    <th scope="row"><?= $accesorio['id'] ?></th>
+                    <td><?= $accesorio['tipo'] ?></td>
+                    <td><?= $accesorio['modelos'] ?></td>
                     <td style="gap: 20px; align-items: center;">
-                        <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $proveedor['id'] ?>" role="button" aria-controls="offcanvas_<?= $proveedor['id'] ?>">
+                        <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $accesorio['id'] ?>" role="button" aria-controls="offcanvas_<?= $accesorio['id'] ?>">
                             <i  data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                         </a>
-                        <a href = # onclick="delete_proveedor(<?= $proveedor['id'] ?>)" style="border: none; background: transparent;">
+                        <a href = # onclick="delete_accesorio(<?= $accesorio['id'] ?>)" style="border: none; background: transparent;">
                             <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar"  class="fa fa-trash"> </i></a>
                     </td>
                 </tr>

@@ -21,13 +21,11 @@ class Proveedores
     {
         try {
             $nombre = $_REQUEST['proveedor_nombre'];
-            $cc = $_REQUEST['proveedor_cc'];
-            $alias  = $_REQUEST['proveedor_alias'];
+            $telefono = $_REQUEST['proveedor_telefono'];
 
             DB::insert('supplier', [
                 'nombre' => $nombre,
-                'cc' => $cc,
-                'alias' => $alias,
+                'telefono' => $telefono,
             ]);
 
             $_SESSION['notifications'] = Helper::success('Proveedor agregado');
@@ -41,13 +39,12 @@ class Proveedores
         try {
             $id = $_REQUEST['proveedor_update_id'];
             $nombre = $_REQUEST['proveedor_update_nombre'];
-            $cc = $_REQUEST['proveedor_update_cc'];
-            $alias = $_REQUEST['proveedor_update_alias'];
+            $telefono = $_REQUEST['proveedor_update_telefono'];
+
 
             $update_status = DB::update('supplier', [
                 'nombre' => $nombre,
-                'cc' => $cc,
-                'alias' => $alias
+                'telefono' => $telefono,
             ], [
                 'id' => $id
             ]);

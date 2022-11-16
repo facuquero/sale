@@ -20,9 +20,16 @@ class Clientes
     {
         try {
             $nombre = $_REQUEST['client_name'];
+            $telefono = $_REQUEST['client_telefono'];
+            $ciudad = $_REQUEST['client_ciudad'];
+            $n_comisionista = $_REQUEST['client_n_comisionista'];
+
 
             DB::insert('client', [
-                'name' => $nombre
+                'name' => $nombre,
+                'telefono' => $telefono,
+                'ciudad' => $ciudad,
+                'n_comisionista' => $n_comisionista,
             ]);
 
             $_SESSION['notifications'] = Helper::success('Cliente agregado');
@@ -35,9 +42,16 @@ class Clientes
     {
         try {
             $nombre = $_REQUEST['client_update'];
+            $telefono = $_REQUEST['client_update_telefono'];
+            $ciudad = $_REQUEST['client_update_ciudad'];
+            $n_comisionista = $_REQUEST['client_update_n_comisionista'];
+            
             $id = $_REQUEST['client_id'];
             $update_status = DB::update('client', [
                 'name' => $nombre,
+                'telefono' => $telefono,
+                'ciudad' => $ciudad,
+                'n_comisionista' => $n_comisionista,
             ], [
                 'id' => $id
             ]);

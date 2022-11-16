@@ -290,6 +290,12 @@ require('../config/core.php');
                     aria-controls="offcanvas_<?= $gastoVariable['id'] ?>">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
+
+                <button style="border: none; background: transparent;" type="button"  data-bs-toggle="modal"
+                    data-bs-target="#modal_confirmar_pagado_<?= $gastoFijo['id'] ?>">
+                   <a href = #> <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> </a>
+                </button>
+                
                 <a href = # onclick="delete_gasto_variable(<?= $gastoVariable['id'] ?>)"
                     style="border: none; background: transparent;">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash"> </i></a>

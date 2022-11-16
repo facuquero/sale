@@ -52,6 +52,7 @@ class Core
             require("../src/Modules/Clientes.php");
             require("../src/Modules/Proveedores.php");
             require("../src/Modules/Gastos.php");
+            require("../src/Modules/Accesorios.php");
             
             #   [Controllers]
             #   Enlazamos todos los controladores
