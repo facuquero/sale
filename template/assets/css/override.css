@@ -3,7 +3,7 @@
 }
 
 .modal-content {
-    margin-top: 50%;
+    margin-top: 20%;
 }
 
 .modal{
@@ -12,3 +12,5 @@
 .fixed-top {
     z-index: 2;
 }
+
+

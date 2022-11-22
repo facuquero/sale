@@ -7,11 +7,29 @@ class Productos
         // return getProducts();
     }
 
-    public static function getProducts():? array
+    public static function getTelefonos():? array
     {
         try {
-            $Products = DB::get(['*'] ,'telefonos');
-            return is_bool($Products) ? $Products = [] : $Products;
+            $Telefonos = DB::get(['*'] ,'telefonos');
+            return is_bool($Telefonos) ? $Telefonos = [] : $Telefonos;
+        } catch (Exception $e) {
+            Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
+        }
+    }
+
+    public static function getStock():? array
+    {
+        try {
+            $TelefonosStock = DB::get(['*'] ,'stock_telefonos');
+            foreach ($TelefonosStock as &$stock) {
+                $producto = DB::get(['*'] ,'telefonos', ['id' => $stock['product_id']])[0];
+                $stock['modelo'] = $producto['modelo'];
+                $stock['color'] = $producto['color'];
+                $stock['capacidad'] = $producto['capacidad'].'GB';
+            }
+
+
+            return is_bool($TelefonosStock) ? $TelefonosStock = [] : $TelefonosStock;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
         }
@@ -83,6 +101,48 @@ class Productos
             }
         } catch (Exception $e) {
             Logger::error('Products', 'Error in deleteProduct ->' . $e->getMessage());
+        }
+    }
+
+    public static function addStockTelefon()
+    {
+        try {
+            [   // data environments
+                'productoSellado' => $productoSellado,
+                'imei' => $imei,
+                'precio_lista' => $precio_lista,
+                'precio_mayorista' => $precio_mayorista,
+                'precio_venta' => $precio_venta,
+                'costo' => $costo,
+                'fecha_ingreso' => $fecha_ingreso,
+                'bateria' => $bateria,
+                'plan_canje' => $plan_canje,
+                'telefono' => $telefono,
+            ] = $_REQUEST;
+            $id_telefono = explode('|', $telefono)[1];
+            
+
+            $statusInsert = DB::insert('stock_telefonos', [
+                'product_id ' => $id_telefono,
+                'imei' => $imei,
+                'precio_lista' => $precio_lista,
+                'precio_mayorista' => $precio_mayorista,
+                'bateria' => $bateria,
+                'precio_venta' => $precio_venta,
+                'costo' => $costo,
+                'producto_sellado' => (boolean)$productoSellado,
+                'plan_canje' => $plan_canje,
+                'fecha_ingreso' => $fecha_ingreso
+            ]);
+
+            if($statusInsert){
+                $_SESSION['notifications'] = Helper::success('Stock agregado');
+            }else{
+                $_SESSION['notifications'] = Helper::error('Hubo un error, quejate con Quero');
+            }
+
+        } catch (Exception $e) {
+            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
     }
 }
