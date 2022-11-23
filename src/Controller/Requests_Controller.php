@@ -64,7 +64,7 @@ function Requests_Controller()
         Gastos::deleteGastoVariable(); 
     });
 #######accesorios
-Request::getLocal('accesorio_tipo', function(){ 
+Request::getLocal('accesorio_tipo', function(){     
     Accesorios::addAccesorio();
 });
 
