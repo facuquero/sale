@@ -2,7 +2,7 @@
 try {
     session_start();
     if (isset($_SESSION['id'])) {
-        header('Location: pages/products.php');
+        header('Location: pages/productos.php');
     }
     require_once 'config/config_local.php';
     require_once 'src/Class/DB.php';
@@ -56,6 +56,9 @@ try {
 <body>
 
     <div class="" style="width: 400px;">
+        <div style="width: 100%; text-align: center;">
+            <img src="template/assets/img/logo.png" width="200px; margin-bottom: 30px; ">
+        </div>
         <form>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo</label>
