@@ -72,6 +72,11 @@ function Requests_Controller()
         Accesorios::addAccesorio();
     });
 
+#######accesorios
+Request::getLocal('accesorio_tipo', function(){     
+    Accesorios::addAccesorio();
+});
+
     Request::getLocal('accesorio_update_id', function () {
         Accesorios::updateAccesorio();
     });

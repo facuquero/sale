@@ -41,7 +41,7 @@
                     <li>ㅤ</li>
 
                     <li><a href="#"><i class="fa fa-handshake"></i> Ventas </a></li>
-                    <li><a href="#"><i class="fa fa-exclamation-triangle"></i> Pendientes </a></li>
+                    <li><a href="pendientes.php"><i class="fa fa-exclamation-triangle"></i> Pendientes </a></li>
                     <li><a href="#"><i class="fa fa-line-chart"></i> Balance </a></li>
                     <li><a href="stock.php"><i class="fa fa-line-chart"></i> Stock </a></li>
                     <li>ㅤ</li>
