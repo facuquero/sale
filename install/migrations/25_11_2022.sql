@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2022 a las 01:42:51
+-- Tiempo de generación: 24-11-2022 a las 14:16:20
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -101,6 +101,7 @@ CREATE TABLE `gastos_fijos` (
 --
 
 INSERT INTO `gastos_fijos` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
+(11, 'Seguro', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, 'Mutual', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (13, 'Alquiler departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (14, 'Expensas departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -188,21 +189,18 @@ CREATE TABLE `stock_telefonos` (
   `costo` float NOT NULL,
   `producto_sellado` tinyint(4) NOT NULL,
   `plan_canje` tinyint(1) NOT NULL,
-  `fecha_ingreso` datetime NOT NULL,
-  `vendido` tinyint(1) NOT NULL,
-  `fecha_venta` datetime DEFAULT NULL
+  `fecha_ingreso` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `stock_telefonos`
 --
 
-INSERT INTO `stock_telefonos` (`id`, `product_id`, `imei`, `bateria`, `precio_lista`, `precio_mayorista`, `precio_venta`, `costo`, `producto_sellado`, `plan_canje`, `fecha_ingreso`, `vendido`, `fecha_venta`) VALUES
-(1, 2, 123, 12, 123123, 123123, 1212, 123123, 1, 0, '2022-11-21 00:00:00', 0, NULL),
-(2, 2, 121111111, 12, 1, 1, 1, 1, 0, 0, '2022-11-24 00:00:00', 0, NULL),
-(3, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(4, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(5, 2, 2147483647, 1, 12, 13, 14, 15, 1, 0, '2022-11-25 00:00:00', 0, NULL);
+INSERT INTO `stock_telefonos` (`id`, `product_id`, `imei`, `bateria`, `precio_lista`, `precio_mayorista`, `precio_venta`, `costo`, `producto_sellado`, `plan_canje`, `fecha_ingreso`) VALUES
+(1, 2, 123, 12, 123123, 123123, 1212, 123123, 1, 0, '2022-11-21 00:00:00'),
+(2, 2, 121111111, 12, 1, 1, 1, 1, 0, 0, '2022-11-24 00:00:00'),
+(3, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00'),
+(4, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -279,23 +277,6 @@ CREATE TABLE `user_roles` (
   `id` int(11) NOT NULL,
   `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas_plan_canje`
---
-
-CREATE TABLE `ventas_plan_canje` (
-  `id` int(255) NOT NULL,
-  `id_stock_vendido` int(255) NOT NULL,
-  `id_stock_recibido` int(255) NOT NULL,
-  `id_client` int(255) NOT NULL,
-  `id_vendedor` int(255) NOT NULL,
-  `valor_cobrado` float NOT NULL,
-  `pago_en_efectivo` float NOT NULL,
-  `pago_en_CC` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -377,12 +358,6 @@ ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ventas_plan_canje`
---
-ALTER TABLE `ventas_plan_canje`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -432,7 +407,7 @@ ALTER TABLE `pending`
 -- AUTO_INCREMENT de la tabla `stock_telefonos`
 --
 ALTER TABLE `stock_telefonos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `supplier`
@@ -457,12 +432,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `user_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `ventas_plan_canje`
---
-ALTER TABLE `ventas_plan_canje`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

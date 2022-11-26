@@ -38,16 +38,11 @@
             <div class="">
                 <div class="logo">GESPRENDER</div>
                 <ul>
-                    <li>ㅤ</li>
-
-                    <li><a href="#"><i class="fa fa-handshake"></i> Ventas </a></li>
+                    <li><a href="ventas.php"><i class="fa fa-handshake"></i> Ventas </a></li>
                     <li><a href="pendientes.php"><i class="fa fa-exclamation-triangle"></i> Pendientes </a></li>
                     <li><a href="#"><i class="fa fa-line-chart"></i> Balance </a></li>
                     <li><a href="stock.php"><i class="fa fa-line-chart"></i> Stock </a></li>
-                    <li>ㅤ</li>
                     <hr>
-                    <li>ㅤ</li>
-                    <li>ㅤ</li>
                     <li><b> Administración </b> </li>
                     <li><a href="productos.php"><i class="fa fa-mobile" aria-hidden="true"></i> Telefonos</a></li>
                     <li><a href="accesorios.php"><i class="fa fa-plug" aria-hidden="true"></i> Accesorios</a></li>

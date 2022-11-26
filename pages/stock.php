@@ -258,6 +258,16 @@ require('../config/core.php');
     }
 
     autocomplete(document.getElementById("myInput"), countries);
+
+
+    $('.boton_de_siguiente_en_venta_plan_canje_si').click(() => {
+        $('.step1_venta').css('display', 'none');
+        $('.step2_venta').css('display', 'block');
+    })
+    $('.boton_de_siguiente_en_venta_plan_canje_no').click(() => {
+        $('.step1_venta').css('display', 'none');
+        $('.step3_venta').css('display', 'block');
+    })
 </script>
 
 </html>
