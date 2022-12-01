@@ -14,3 +14,9 @@
 }
 
 
+.bg-fff {
+    background: #fff !important;
+}
+.b-1 {
+    border: rgba(69, 69, 69, 0.466) solid 1px;
+}

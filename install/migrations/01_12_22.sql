@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2022 a las 22:17:35
+-- Tiempo de generación: 26-11-2022 a las 01:42:51
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -182,7 +182,6 @@ CREATE TABLE `stock_telefonos` (
   `product_id` int(11) NOT NULL,
   `imei` int(11) DEFAULT NULL,
   `bateria` int(11) DEFAULT NULL,
-  `capacidad` varchar(255) NOT NULL,
   `precio_lista` float NOT NULL,
   `precio_mayorista` float NOT NULL,
   `precio_venta` float NOT NULL,
@@ -198,13 +197,12 @@ CREATE TABLE `stock_telefonos` (
 -- Volcado de datos para la tabla `stock_telefonos`
 --
 
-INSERT INTO `stock_telefonos` (`id`, `product_id`, `imei`, `bateria`, `capacidad`, `precio_lista`, `precio_mayorista`, `precio_venta`, `costo`, `producto_sellado`, `plan_canje`, `fecha_ingreso`, `vendido`, `fecha_venta`) VALUES
-(1, 2, 123, 12, '256', 123123, 123123, 1212, 123123, 1, 0, '2022-11-21 00:00:00', 0, NULL),
-(2, 2, 121111111, 12, '26', 1, 1, 1, 1, 0, 0, '2022-11-24 00:00:00', 0, NULL),
-(3, 3, 1111, 111, '9', 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(4, 3, 1111, 111, '', 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(5, 2, 2147483647, 1, '', 12, 13, 14, 15, 1, 0, '2022-11-25 00:00:00', 0, NULL),
-(6, 3, 99999, 99, '', 10000, 10000, 10000, 10000, 0, 0, '2022-11-30 00:00:00', 0, NULL);
+INSERT INTO `stock_telefonos` (`id`, `product_id`, `imei`, `bateria`, `precio_lista`, `precio_mayorista`, `precio_venta`, `costo`, `producto_sellado`, `plan_canje`, `fecha_ingreso`, `vendido`, `fecha_venta`) VALUES
+(1, 2, 123, 12, 123123, 123123, 1212, 123123, 1, 0, '2022-11-21 00:00:00', 0, NULL),
+(2, 2, 121111111, 12, 1, 1, 1, 1, 0, 0, '2022-11-24 00:00:00', 0, NULL),
+(3, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
+(4, 3, 1111, 111, 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
+(5, 2, 2147483647, 1, 12, 13, 14, 15, 1, 0, '2022-11-25 00:00:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -434,7 +432,7 @@ ALTER TABLE `pending`
 -- AUTO_INCREMENT de la tabla `stock_telefonos`
 --
 ALTER TABLE `stock_telefonos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `supplier`

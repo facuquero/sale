@@ -82,11 +82,11 @@ require('../config/core.php');
 
                     <form method="POST" autocomplete="OFF">
 
-                        <input list='select_phone' name="telefono" placeholder="Seleccione Telefono" autocomplete="OFF">
+                        <input list='select_phone' class="bg-fff b-1" name="telefono" placeholder="Seleccione Telefono" autocomplete="OFF" style="width: 100%;">
 
                         <datalist id="select_phone">
                             <?php foreach (Productos::getTelefonos() as $telefono) : ?>
-                                <option value="<?= $telefono['modelo'] . " " . $telefono['color'] . " - " . $telefono['capacidad'] . "GB |" . $telefono['id']  ?>"></option>
+                                <option value="<?= $telefono['nombre'] . " " . $telefono['modelo'] . " " . $telefono['color'] . " - "  . " | ID: " . $telefono['id']  ?>"></option>
                             <?php endforeach; ?>
                         </datalist>
                         <div class="d-flex mt-3" style="gap: 20px">
@@ -106,8 +106,15 @@ require('../config/core.php');
 
                         <div class="mb-3">
                             <label for="imei" class="form-label">Imei</label>
-                            <input type="text" class="form-control" id="imei" name="imei">
+                            <input type="text" class="form-control bg-fff" id="imei" name="imei">
                         </div>
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Capacidad</option>
+                            <option value="64">64 GB</option>
+                            <option value="128">128 GB</option>
+                            <option value="256">256 GB</option>
+                            <option value="512">512 GB</option>
+                        </select>
                         <div class="mb-3">
                             <label for="precio_lista" class="form-label">Precio de lista</label>
                             <input type="number" step="0.01" class="form-control" id="precio_lista" name="precio_lista">
@@ -135,7 +142,7 @@ require('../config/core.php');
 
                         <input type="hidden" name="carga_stock_celular" value="1">
                         <input type="hidden" name="plan_canje" value="0">
-                        <input type="submit" value="Cargar">
+                        <input type="submit" value="Cargar" class="btn btn-primary">
                     </form>
 
                 </div>
@@ -149,15 +156,32 @@ require('../config/core.php');
 </body>
 
 <script>
- 
     $('.boton_de_siguiente_en_venta_plan_canje_si').click(() => {
         $('.step1_venta').css('display', 'none');
-        $('.step2_venta').css('display', 'block');
+        $('.step2_venta').css('display', 'flex');
+
     })
     $('.boton_de_siguiente_en_venta_plan_canje_no').click(() => {
         $('.step1_venta').css('display', 'none');
         $('.step3_venta').css('display', 'block');
     })
+    $('.cerrar_modal_venta').click(() => {
+        console.log('entro');
+        $('.step1_venta').css('display', 'flex');
+        $('.step3_venta').css('display', 'none');
+        $('.step2_venta').css('display', 'none');
+        $('.step2_plan_canje').css('display', 'none');
+        $('.step1_plan_canje').css('display', 'block');
+
+    });
+    $('.btn_step1_plan_canje').click(() => {
+        $('.step1_plan_canje').css('display', 'none');
+        $('.step2_plan_canje').css('display', 'flex');
+    });
+    $('.btn_step2_plan_canje').click(() => {
+        $('.step1_plan_canje').css('display', 'block');
+        $('.step2_plan_canje').css('display', 'none');
+    });
 </script>
 
 </html>

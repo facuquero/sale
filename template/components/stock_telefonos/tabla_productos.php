@@ -20,7 +20,7 @@
                 <td scope="col"><?= $telefono['imei'] ?></td>
                 <td scope="col"><?= $telefono['modelo'] ?></td>
                 <td scope="col"><?= $telefono['color'] ?></td>
-                <td scope="col"><?= $telefono['capacidad'] ?></td>
+                <td scope="col"><?= $telefono['capacidad'] ?> GB</td>
                 <td scope="col"><?= $telefono['bateria'] ?></td>
                 <td scope="col"><?= $telefono['precio_mayorista'] ?></td>
                 <td scope="col"><?= $telefono['costo'] ?></td>
@@ -32,12 +32,12 @@
                         vender
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="vender_cosa_<?= $telefono['imei'] ?>" tabindex="-1" aria-labelledby="vender_cosa_<?= $telefono['imei'] ?>Label" aria-hidden="true">
+                    <div class="modal fade" id="vender_cosa_<?= $telefono['imei'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="vender_cosa_<?= $telefono['imei'] ?>Label" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="vender_cosa_<?= $telefono['imei'] ?>Label">Vender <?= $telefono['modelo'] ?></h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close cerrar_modal_venta" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
                                 <div class="modal-body">
@@ -90,59 +90,60 @@
                                             color: #ffffff;
                                         }
                                     </style>
-                                    <form method="POST" autocomplete="OFF">
-                                        <div class="step1_venta" style="display: block;">
-                                            <H3>Plan canje?</H3>
-                                            <a href="#" class="boton_de_siguiente_en_venta_plan_canje_si">Si</a>
-                                            <a href="#" class="boton_de_siguiente_en_venta_plan_canje_no">No</a>
+
+
+
+
+
+                                    <div class="step1_venta" style="display: flex;
+                                                                        flex-direction: column;
+                                                                        justify-content: center;
+                                                                        align-items: center;
+                                                                        padding: 20px;">
+                                        <H3 class="mb-4">Plan canje?</H3>
+                                        <div class="">
+                                            <a href="#" class="boton_de_siguiente_en_venta_plan_canje_si btn btn-primary" style="width: 90px;">Si</a>
+                                            <a href="#" class="boton_de_siguiente_en_venta_plan_canje_no btn btn-primary" style="width: 90px;">No</a>
                                         </div>
+                                    </div>
 
 
 
 
 
-                                        <div class="step2_venta" style="display: none;">
-                                            eso tilin
-                                        </div>
+                                    <div class="step2_venta" style="display: none;">
+                                        <form action="" method="post" style="width: 100%;">
+                                            <input type="hidden" name="carga_stock_celular" value="1">
+                                            <input type="hidden" name="plan_canje" value="1">
+                                            <div class="step1_plan_canje">
+                                                <?php include '../template/components/stock_telefonos/form_carga_stock_plan_canje.php'; ?>
+                                                <div class="btn_step1_plan_canje btn btn-primary">Siguiente</div>
+                                            </div>
+                                            <div class="step2_plan_canje" style="display: none; flex-direction: column;">
+                                            <?php include '../template/components/stock_telefonos/datos_nuevo_telefono_entrante.php'; ?>
+                                                <div class="btn_step2_plan_canje btn btn-primary">Volver</div>
+                                            </div>
+                                        </form>
+                                    </div>
 
 
 
 
-                                        
 
-                                        <div class="step3_venta" style="display: none;">
+                                    <div class="step3_venta" style="display: none;">
+                                        <form method="POST" autocomplete="OFF">
+                                            <input type="hidden" name="plan_canje" value="0">
                                             <div class="mb-3">
                                                 <label for="imei" class="form-label">Imei telefono a vender</label>
                                                 <input disabled id="imei_telefono_vender" type="text" name="telefono" placeholder="IMEI" autocomplete="OFF" value="<?= $telefono['imei'] ?>">
                                             </div>
-                                            <div class="mb-3">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Seleccione el cliente</option>
-                                                    <?php foreach (Clientes::getClients() as $cliente) : ?>
-                                                        <option value="<?= $cliente['id'] ?>"><?= $cliente['name'] ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="precio_venta" class="form-label">Precio de venta</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio_venta" name="precio_venta" value="<?= $telefono['precio_venta'] ?>">
-                                            </div>
+                                            
+                                            <?php include '../template/components/stock_telefonos/datos_nuevo_telefono_entrante.php'; ?>
 
-                                            <div class="mb-3">
-                                                <label for="precio_venta" class="form-label">Pago en efectivo</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio_venta" name="precio_venta" value="">
-                                            </div>
 
-                                            <div class="mb-3">
-                                                <label for="precio_venta" class="form-label">Pago en cuenta corriente</label>
-                                                <input type="number" step="0.01" class="form-control" id="precio_venta" name="precio_venta" value="">
-                                            </div>
-
-                                            <input type="submit" value="Cargar">
-                                        </div>
-                                        
-                                    </form>
-
+                                            <input type="submit" value="Cargar" class="btn btn-primary">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

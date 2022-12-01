@@ -25,7 +25,6 @@ class Productos
                 $producto = DB::get(['*'] ,'telefonos', ['id' => $stock['product_id']])[0];
                 $stock['modelo'] = $producto['modelo'];
                 $stock['color'] = $producto['color'];
-                $stock['capacidad'] = $producto['capacidad'].'GB';
             }
 
 
