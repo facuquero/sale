@@ -7,7 +7,6 @@
         <?php endforeach; ?>
     </datalist>
 </div>
-
 <label for="precio_venta" class="form-label">Precio de venta</label>
 <div class="input-group mb-3">
     <span class="input-group-text">$</span>

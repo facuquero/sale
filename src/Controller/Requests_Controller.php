@@ -32,6 +32,10 @@ function Requests_Controller()
         Productos::addStockTelefon();
     });
 
+    Request::getLocal('buscador_page_stock', function () {
+        Productos::buscador_page_stock();
+    });
+
     #Proveedor
     Request::getLocal('proveedor_nombre', function () {
         Proveedores::addProveedor();

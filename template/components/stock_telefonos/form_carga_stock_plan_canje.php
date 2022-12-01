@@ -1,8 +1,8 @@
 <input list='select_phone' class="bg-fff b-1" name="telefono" placeholder="Seleccione Telefono" autocomplete="OFF" style="width: 100%;">
 
 <datalist id="select_phone">
-    <?php foreach (Productos::getTelefonos() as $telefono) : ?>
-        <option value="<?= $telefono['nombre'] . " " . $telefono['modelo'] . " " . $telefono['color'] . " - "  . " | ID: " . $telefono['id']  ?>"></option>
+    <?php foreach (Productos::getTelefonos() as $tel) : ?>
+        <option value="<?= $tel['nombre'] . " " . $tel['modelo'] . " " . $tel['color'] . " - "  . " | ID: " . $tel['id']  ?>"></option>
     <?php endforeach; ?>
 </datalist>
 <div class="d-flex mt-3" style="gap: 20px">

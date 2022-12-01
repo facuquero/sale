@@ -21,6 +21,7 @@ class Productos
     {
         try {
             $TelefonosStock = DB::get(['*'] ,'stock_telefonos');
+            // ddd($TelefonosStock);
             foreach ($TelefonosStock as &$stock) {
                 $producto = DB::get(['*'] ,'telefonos', ['id' => $stock['product_id']])[0];
                 $stock['modelo'] = $producto['modelo'];
@@ -33,6 +34,29 @@ class Productos
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
         }
     }
+
+    public static function buscador_page_stock()
+    {
+        try {
+            $search = $_REQUEST['search'];
+            $query = "SELECT * FROM `stock_telefonos` S  
+            JOIN `telefonos` T ON S.product_id = T.id 
+            WHERE T.nombre 
+            LIKE '%$search%' 
+            OR T.modelo LIKE '%$search%' 
+            OR T.capacidad LIKE '%$search%' 
+            OR S.imei LIKE '%$search%'
+            ";
+            $TelefonosStock = DB::query($query, true);
+            $var_products = $TelefonosStock;
+            require '../template/components/stock_telefonos/tabla_productos.php';
+            die;
+            
+        } catch (Exception $e) {
+            Logger::error('Products', 'Error in buscador_page_stock ->' . $e->getMessage());
+        }
+    }
+
     public static function addProducts()
     {
         try {
@@ -118,7 +142,7 @@ class Productos
                 'plan_canje' => $plan_canje,
                 'telefono' => $telefono,
             ] = $_REQUEST;
-            $id_telefono = explode('|', $telefono)[1];
+            $id_telefono = explode('ID: ', $telefono)[1];
             
 
             $statusInsert = DB::insert('stock_telefonos', [
