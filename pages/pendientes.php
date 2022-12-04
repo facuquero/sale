@@ -66,7 +66,7 @@ require('../config/core.php');
         </div>
     </div>
 
-
+    
     <table class="table caption-top">
         <caption> Por pagar </caption>
         <thead>
@@ -74,9 +74,10 @@ require('../config/core.php');
                 <th scope="col">#</th>
                 <th scope="col">Concepto</th>
                 <th scope="col">Monto</th>
-                <th scope="col">Por pagar</th>
-                <th scope="col">Proveedor</th>
+                <th scope="col">A</th>
                 <th scope="col">Acciones</th>
+
+                <th scope="col" > Total: <?= $_SESSION['Pendiente']::getTotalAPagar() ?> </th>
             </tr>
         </thead>
         <tbody>
@@ -113,9 +114,12 @@ require('../config/core.php');
                     <th scope="row"><?= $pendiente['id'] ?></th>
                     <td><?= $pendiente['concepto'] ?></td>
                     <td><?= $pendiente['monto']?></td>
-                    <td><?= $pendiente['por_pagar_a_proveedores']?></td>
+                    <?php  if($pendiente['from_module'] == 'gastos_fijos' || $pendiente['from_module'] == 'gastos_variables'): ?> 
+                    <td>Gasto</td>
+                    <?php else: ?>
                     <td><?= $pendiente['proveedor']?></td>
-                    <td>
+                    <?php endif;?>
+                    <td> 
                         <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $client['id'] ?>" role="button" aria-controls="offcanvas_<?= $client['id'] ?>">
                         <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                         </a>

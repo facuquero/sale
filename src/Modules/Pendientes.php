@@ -9,8 +9,19 @@ class Pendientes
     public static function getPendienteDePago(): ?array
     {
         try {
-            $Pendiente = DB::get(['*'], 'pending', ['por_pagar_a_proveedores' => true]);
+            $Pendiente = DB::query('SELECT * FROM pending WHERE por_pagar_a_proveedores IS NOT NULL', 'fetch_array');
             return is_bool($Pendiente) ? $Pendiente = [] : $Pendiente;
+        } catch (Exception $e) {
+            Logger::error('Pendiente', 'Error in add_product ->' . $e->getMessage());
+        }
+    }
+    public static function getTotalAPagar(): ?string
+    {
+        try {
+            $Pendiente = DB::query('SELECT SUM(monto) as total 
+            FROM pending
+            WHERE por_pagar_a_proveedores IS NOT NULL', 'fetch_assoc');
+            return is_bool($Pendiente) ? $Pendiente = [] : $Pendiente[0]['total'];
         } catch (Exception $e) {
             Logger::error('Pendiente', 'Error in add_product ->' . $e->getMessage());
         }

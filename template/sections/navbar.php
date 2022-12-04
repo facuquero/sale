@@ -42,6 +42,7 @@
                     <li><a href="pendientes.php"><i class="fa fa-exclamation-triangle"></i> Pendientes </a></li>
                     <li><a href="#"><i class="fa fa-line-chart"></i> Balance </a></li>
                     <li><a href="stock.php"><i class="fa fa-line-chart"></i> Stock </a></li>
+                    <li><a href="stock_accesorios.php"><i class="fa fa-line-chart"></i> Stock Accesorios </a></li>
                     <hr>
                     <li><b> Administración </b> </li>
                     <li><a href="productos.php"><i class="fa fa-mobile" aria-hidden="true"></i> Telefonos</a></li>
