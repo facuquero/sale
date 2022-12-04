@@ -47,6 +47,10 @@ if (!empty($var_products)) :
                                     </div>
 
                                     <div class="modal-body">
+
+
+
+
                                         <div class="step1_venta" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
                                             <H3 class="mb-4">Plan canje?</H3>
                                             <div class="">
@@ -60,16 +64,20 @@ if (!empty($var_products)) :
 
 
                                         <div class="step2_venta" style="display: none;">
-                                            <form action="" method="post" style="width: 100%;">
-                                                <input type="hidden" name="plan_canje" value="1">
-                                                <input type="hidden" name="carga_stock_celular_2" value="1">
+                                            <form action="" method="post" style="width: 100%;" autocomplete="OFF" >
+                                                <input type="hidden" name="venta_plan_canje" value="1">
+                                                <input name="imei_telefono_vender" type="hidden" value="<?= $telefono['imei'] ?>">
+                                                <!-- <input type="hidden" name="carga_stock_celular_2" value="1"> -->
                                                 <div class="step1_plan_canje">
                                                     <?php include '../template/components/stock_telefonos/form_carga_stock_plan_canje.php'; ?>
                                                     <div class="btn_step1_plan_canje btn btn-primary">Siguiente</div>
                                                 </div>
                                                 <div class="step2_plan_canje" style="display: none; flex-direction: column;">
                                                     <?php include '../template/components/stock_telefonos/datos_nuevo_telefono_entrante.php'; ?>
-                                                    <div class="btn_step2_plan_canje btn btn-primary">Volver</div>
+                                                    <div class="d-flex" style="gap:20px">
+                                                        <div class="btn_step2_plan_canje btn btn-primary">Volver</div>
+                                                        <button class="btn btn-primary" type="submit">Cargar</button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>

@@ -36,6 +36,10 @@ function Requests_Controller()
         Productos::buscador_page_stock();
     });
 
+    Request::getLocal('venta_plan_canje', function () {
+        Productos::addVentaPlanCaje();
+    });
+
     #Proveedor
     Request::getLocal('proveedor_nombre', function () {
         Proveedores::addProveedor();

@@ -55,7 +55,6 @@ class DB
                 $wher = substr($wher, 0, -2);
             }
             $query = "SELECT $cols FROM $table $wher $OrderBy";
-            $_SESSION['dev_debug'][] = $query;
             $response = self::query($query, $fetch, $typeFetch);
 
             return $response ? $response : false;
