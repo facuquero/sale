@@ -34,6 +34,48 @@ class Accesorios
         }
     }
 
+    public static function getStockAccesorios():? array
+    {
+        try {
+            $TelefonosStock = DB::get(['*'] ,'stock_accesorios');
+            foreach ($TelefonosStock as &$stock) {
+                $producto = DB::get(['*'] ,'accesorios', ['id' => $stock['id_accesorio']])[0];
+                $stock['tipo'] = $producto['tipo'];
+                $stock['modelo'] = $producto['modelos'];
+            }
+            return is_bool($TelefonosStock) ? $TelefonosStock = [] : $TelefonosStock;
+        } catch (Exception $e) {
+            Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
+        }
+    }
+
+    public static function addStockAccesorio()
+    {
+        try {
+            [   // data environments
+                'precio_venta_accesorio' => $precio_venta,
+                'costo_accesorio' => $costo,
+                'accesorio' => $telefono,
+            ] = $_REQUEST;
+            $id_telefono = explode(':', $telefono)[1];            
+
+            $statusInsert = DB::insert('stock_accesorios', [
+                'id_accesorio ' => $id_telefono,
+                'precio_venta' => $precio_venta,
+                'costo' => $costo
+            ]);
+
+            if($statusInsert){
+                $_SESSION['notifications'] = Helper::success('Stock agregado');
+            }else{
+                $_SESSION['notifications'] = Helper::error('Hubo un error, quejate con Quero');
+            }
+
+        } catch (Exception $e) {
+            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
+        }
+    }
+
     public static function updateAccesorio()
     {
         try {
