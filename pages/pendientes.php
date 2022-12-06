@@ -16,10 +16,9 @@ require('../config/core.php');
 
 <body>
     <?php require_once '../template/sections/navbar.php'; ?>
-
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Crear cliente
+        Crear pendiente
     </button>
 
 
@@ -29,33 +28,61 @@ require('../config/core.php');
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear cliente</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Crear pendiente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-
+               
                     <form method="POST">
                         <div class="row mb-3">
-                            <label for="client_name" class="col-sm-2 col-form-label">Nombre:</label>
+                            <label for="pending_concepto" class="col-sm-2 col-form-label">Concepto:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="client_name" id="client_name">
+                                <input type="text" class="form-control" name="pending_concepto" id="pending_concepto">
+                            </div>
+                            <div style="display: flex; margin-top: 10px">
+                                <div class="form-check" style="margin-right: 10px">
+                                    <input class="form-check-input" type="radio" name="porPagar" id="flexRadioDefault1"
+                                        value="1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Por pagar
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="porPagar" id="flexRadioDefault2"
+                                        value="2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Por cobrar
+                                    </label>
+                                </div>
                             </div>
 
-                            <label for="client_telefono" class="col-sm-2 col-form-label">Telefono:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="client_telefono" id="client_telefono">
+                            <div class="mb-3">
+                                <label for="pending_monto" class="form-label">Monto: </label>
+                                <input type="number" step="0.01" class="form-control" id="pending_monto"
+                                    name="pending_monto">
                             </div>
 
-                            <label for="client_ciudad" class="col-sm-2 col-form-label">Ciudad:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="client_ciudad" id="client_ciudad">
+                            <div class="mb-3">
+                                <input list='select_cliente_pending' class="b-1 bg-fff" name="pending_cliente" placeholder="Cliente"
+                                    autocomplete="OFF" style="width: 100%;">
+                                <datalist id="select_cliente_pending">
+                                    <?php foreach (Clientes::getClients() as $cliente) : ?>
+                                    <option value="<?= $cliente['name'] ?> | ID: <?= $cliente['id'] ?>"></option>
+                                    <?php endforeach; ?>
+                                </datalist>
                             </div>
-
-                            <label for="client_n_comisionista" class="col col-form-label">N° Comisionista:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="client_n_comisionista" id="client_n_comisionista">
+                            
+                            <div class="mb-3">
+                                <input list='select_proveedor_pending' class="b-1 bg-fff" name="pending_proveedor" placeholder="Proveedor"
+                                    autocomplete="OFF" style="width: 100%;">
+                                <datalist id="select_proveedor_pending">
+                                    <?php foreach (Proveedores::getProveedores() as $proveedor) : ?>
+                                    <option value="<?= $proveedor['nombre'] ?> | ID: <?= $proveedor['id'] ?>"></option>
+                                    <?php endforeach; ?>
+                                </datalist>
                             </div>
+                            
 
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -66,9 +93,51 @@ require('../config/core.php');
         </div>
     </div>
 
-    
+
     <table class="table caption-top">
         <caption> Por pagar </caption>
+        <thead>
+            <tr>
+                <th scope="col col-sm-2">#</th>
+                <th scope="col col-sm-2">Concepto</th>
+                <th scope="col col-sm-2">Monto</th>
+                <th scope="col col-sm-2">A</th>
+                <th scope="col col-sm-2">Acciones</th>
+
+                <th scope="col"> Total: <?= $_SESSION['Pendiente']::getTotalAPagar() ?> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if(!empty($_SESSION['Pendiente']::getPendienteDePago())) : ?>
+            <?php foreach ($_SESSION['Pendiente']::getPendienteDePago() as $pendiente) : ?>
+            <tr>
+                <th scope="row"><?= $pendiente['id'] ?></th>
+                <td><?= $pendiente['concepto'] ?></td>
+                <td><?= $pendiente['monto']?></td>
+                <?php  if($pendiente['from_module'] == 'gastos_fijos' || $pendiente['from_module'] == 'gastos_variables'): ?>
+                <td>Gasto</td>
+                <?php else: ?>
+                <td><?= $pendiente['proveedor']?></td>
+                <?php endif;?>
+                <td>
+                    <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $client['id'] ?>" role="button"
+                        aria-controls="offcanvas_<?= $client['id'] ?>">
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar"
+                            class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a href=# onclick="delete_client(<?= $client['id'] ?>)"
+                        style="border: none; background: transparent;">
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash">
+                        </i></a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+
+    <table class="table caption-top" >
+        <caption> Por cobrar </caption>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -77,62 +146,37 @@ require('../config/core.php');
                 <th scope="col">A</th>
                 <th scope="col">Acciones</th>
 
-                <th scope="col" > Total: <?= $_SESSION['Pendiente']::getTotalAPagar() ?> </th>
+                <th scope="col "> Total: <?= $_SESSION['Pendiente']::getTotalACobrar() ?> </th>
             </tr>
         </thead>
         <tbody>
-        <?php if(!empty($_SESSION['Pendiente']::getPendienteDePago())) : ?> 
-            <?php foreach ($_SESSION['Pendiente']::getPendienteDePago() as $pendiente) : ?>
-                <!-- Offcanvas -->
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas_<?= $pendiente['id'] ?>" aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar pendientee</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" name="pendiente_update" value="<?= $pendiente['name'] ?>">
-                                <input type="hidden" name="pendiente_id" value="<?= $pendiente['id'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Telefono:</label>
-                                <input type="text" class="form-control" name="pendiente_update_telefono" value="<?= $pendiente['telefono'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">Ciudad:</label>
-                                <input type="text" class="form-control" name="pendiente_update_ciudad" value="<?= $pendiente['ciudad'] ?>">
-
-                                <label for="exampleInputEmail1" class="form-label">N° Comisionista:</label>
-                                <input type="text" class="form-control" name="pendiente_update_n_comisionista" value="<?= $pendiente['n_comisionista'] ?>">
-
-                            </div>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
-                    </div>
-                </div>
-                <tr>
-                    <th scope="row"><?= $pendiente['id'] ?></th>
-                    <td><?= $pendiente['concepto'] ?></td>
-                    <td><?= $pendiente['monto']?></td>
-                    <?php  if($pendiente['from_module'] == 'gastos_fijos' || $pendiente['from_module'] == 'gastos_variables'): ?> 
-                    <td>Gasto</td>
-                    <?php else: ?>
-                    <td><?= $pendiente['proveedor']?></td>
-                    <?php endif;?>
-                    <td> 
-                        <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $client['id'] ?>" role="button" aria-controls="offcanvas_<?= $client['id'] ?>">
-                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <a href = # onclick="delete_client(<?= $client['id'] ?>)" style="border: none; background: transparent;">
-                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash" > </i></a>
-                    </td>
-                </tr>
+            <?php if(!empty($_SESSION['Pendiente']::getPendienteDeCobro())) : ?>
+            <?php foreach ($_SESSION['Pendiente']::getPendienteDeCobro() as $pendiente) : ?>
+            <tr>
+                <th scope="row"><?= $pendiente['id'] ?></th>
+                <td><?= $pendiente['concepto'] ?></td>
+                <td><?= $pendiente['monto']?></td>
+                <?php  if($pendiente['from_module'] == 'gastos_fijos' || $pendiente['from_module'] == 'gastos_variables'): ?>
+                <td>Gasto</td>
+                <?php else: ?>
+                <td><?= $pendiente['proveedor']?></td>
+                <?php endif;?>
+                <td>
+                    <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $client['id'] ?>" role="button"
+                        aria-controls="offcanvas_<?= $client['id'] ?>">
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar"
+                            class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a href=# onclick="delete_client(<?= $client['id'] ?>)"
+                        style="border: none; background: transparent;">
+                        <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash">
+                        </i></a>
+                </td>
+            </tr>
             <?php endforeach; ?>
             <?php endif; ?>
         </tbody>
     </table>
-
-
     <?php # require_once '../template/components/products/atajos.php'; 
     ?>
 

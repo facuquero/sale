@@ -6,7 +6,37 @@ class Accesorios
     {
         // return getProducts();
     }
+    public static function venderAccesorio():? array
+    {
+        try {
+            $accesorio = DB::get(['*'] ,'stock_accesorios', ['id' =>  $_REQUEST['accesorio_venta_id']])[0];
+            $id_accesorio_stock = $accesorio['id_accesorio'];
+            $id = $_REQUEST['accesorio_venta_id'];
+            $costo = $accesorio['costo'];
+            $vendido = 1;
+            $precio_venta = $_REQUEST['venta_precio_accesorio'];
+            $fecha_venta = date('Y-m-d H:i:s');
+            
+            $update_status = DB::update('stock_accesorios', [
+                'id_accesorio' => $id_accesorio_stock,
+                'costo' => $costo,
+                'vendido' => $vendido,
+                'precio_venta' => $precio_venta,
+                'fecha_venta' => $fecha_venta
+            ], [
+                'id' => $id
+            ]);
+            $insert_status= DB::insert('ventas_accesorios', [
+                'id_accesorio_stock_vendido' => $_REQUEST['accesorio_venta_id'],
+                'id_vendedor' => '1',
+                'valor_cobrado' => $precio_venta
+            ]);
 
+            return is_bool($insert_status) ? $insert_status = [] : $insert_status;
+        } catch (Exception $e) {
+            Logger::error('Proveedor', 'Error in add_accesorio ->' . $e->getMessage());
+        }
+    }
     public static function getAccesorios():? array
     {
         try {
@@ -37,7 +67,7 @@ class Accesorios
     public static function getStockAccesorios():? array
     {
         try {
-            $TelefonosStock = DB::get(['*'] ,'stock_accesorios');
+            $TelefonosStock = DB::get(['*'] ,'stock_accesorios', ['vendido' => 0]);
             foreach ($TelefonosStock as &$stock) {
                 $producto = DB::get(['*'] ,'accesorios', ['id' => $stock['id_accesorio']])[0];
                 $stock['tipo'] = $producto['tipo'];

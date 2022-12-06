@@ -91,7 +91,14 @@ Request::getLocal('costo_accesorio', function(){
     Request::getLocal('id_accesorio_delete', function () {
         Accesorios::deleteAccesorio();
     });
+    Request::getLocal('pending_concepto', function () {
+        Pendientes::addPendiente();
+    });
 
+    Request::getLocal('venta_precio_accesorio', function () {
+        Accesorios::venderAccesorio();
+    });
+        
     # General
     Request::getLocal('salir', function () {
         session_destroy();
