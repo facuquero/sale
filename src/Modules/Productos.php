@@ -7,23 +7,23 @@ class Productos
         // return getProducts();
     }
 
-    public static function getTelefonos():? array
+    public static function getTelefonos(): ?array
     {
         try {
-            $Telefonos = DB::get(['*'] ,'telefonos');
+            $Telefonos = DB::get(['*'], 'telefonos');
             return is_bool($Telefonos) ? $Telefonos = [] : $Telefonos;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
         }
     }
 
-    public static function getStock():? array
+    public static function getStock(): ?array
     {
         try {
-            $TelefonosStock = DB::get(['*'] ,'stock_telefonos', ['vendido' => 0]);
+            $TelefonosStock = DB::get(['*'], 'stock_telefonos', ['vendido' => 0]);
             // ddd($TelefonosStock);
             foreach ($TelefonosStock as &$stock) {
-                $producto = DB::get(['*'] ,'telefonos', ['id' => $stock['product_id']])[0];
+                $producto = DB::get(['*'], 'telefonos', ['id' => $stock['product_id']])[0];
                 $stock['modelo'] = $producto['modelo'];
                 $stock['color'] = $producto['color'];
             }
@@ -51,7 +51,6 @@ class Productos
             $var_products = $TelefonosStock;
             require '../template/components/stock_telefonos/tabla_productos.php';
             die;
-            
         } catch (Exception $e) {
             Logger::error('Products', 'Error in buscador_page_stock ->' . $e->getMessage());
         }
@@ -86,7 +85,7 @@ class Productos
             $modelo = $_REQUEST['product_update_modelo'];
             $capacidad = $_REQUEST['product_update_capacidad'];
             $color = $_REQUEST['product_update_color'];
-           # ddd([$_REQUEST]);
+            # ddd([$_REQUEST]);
             $update_status = DB::update('telefonos', [
                 'nombre' => $nombre,
                 'color' => $color,
@@ -103,7 +102,7 @@ class Productos
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
-    } 
+    }
 
     public static function deleteProduct()
     {
@@ -143,7 +142,7 @@ class Productos
                 'telefono' => $telefono,
             ] = $_REQUEST;
             $id_telefono = explode('ID: ', $telefono)[1];
-            
+
 
             $statusInsert = DB::insert('stock_telefonos', [
                 'product_id ' => $id_telefono,
@@ -153,17 +152,16 @@ class Productos
                 'bateria' => $bateria,
                 'precio_venta' => $precio_venta,
                 'costo' => $costo,
-                'producto_sellado' => (boolean)$productoSellado,
+                'producto_sellado' => (bool)$productoSellado,
                 'plan_canje' => $plan_canje,
                 'fecha_ingreso' => $fecha_ingreso
             ]);
 
-            if($statusInsert){
+            if ($statusInsert) {
                 $_SESSION['notifications'] = Helper::success('Stock agregado');
-            }else{
+            } else {
                 $_SESSION['notifications'] = Helper::error('Hubo un error, quejate con Quero');
             }
-
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
@@ -194,8 +192,8 @@ class Productos
 
             # Obtenemos id el modelo
             $id_telefono = explode('ID: ', $plan_canje_modelo_telefono)[1];
-            
-            
+
+
             # Insert en tabla Telefonos
             $status = DB::insert('stock_telefonos', [
                 'product_id' => $id_telefono,
@@ -217,7 +215,7 @@ class Productos
             $stock_telefonos_insert = DB::findById('stock_telefonos', $id_stock_recibido);
             $id_stock_recibido = $stock_telefonos_insert['id'];
 
-            if(!$status){
+            if (!$status) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el insert::stock_telefonos');
             }
@@ -226,8 +224,8 @@ class Productos
             $id = reset($stock_telefonos_insert);
             $id = $id['LAST_INSERT_ID()'];
             $stock_telefonos_insert = DB::findById('stock_telefonos', $id);
-            
-            if(!$stock_telefonos_insert){
+
+            if (!$stock_telefonos_insert) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el findById::stock_telefonos');
             }
@@ -249,7 +247,7 @@ class Productos
                 'detalle' => $plan_canje_nuevo_telefono_detalle
             ]);
 
-            if(!$status){
+            if (!$status) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el insert::ventas_plan_canje');
             }
@@ -258,9 +256,53 @@ class Productos
             $status = DB::query("UPDATE stock_telefonos SET fecha_venta = now(), vendido = 1 WHERE id = " .  $telefono_vendido['id']);
 
             $_SESSION['notifications'] = Helper::success('Stock agregado');
-
         } catch (Exception $e) {
             Logger::error('Products', 'Error in addVentaPlanCaje ->' . $e->getMessage());
+        }
+    }
+
+    public static function addVentaPlanCajeNo()
+    {
+        try {
+            # Agregamos el nuevo celular a stock por plan canje
+            [   // data environments
+                'imei_telefono_vender' => $imei_telefono_vender,
+                'plan_canje_nuevo_telefono_cliente' => $plan_canje_nuevo_telefono_cliente,
+                'plan_canje_nuevo_telefono_precio_venta' => $plan_canje_nuevo_telefono_precio_venta,
+                'plan_canje_nuevo_telefono_pago_en_efectivo' => $plan_canje_nuevo_telefono_pago_en_efectivo,
+                'plan_canje_nuevo_telefono_pago_cc' => $plan_canje_nuevo_telefono_pago_cc,
+                'plan_canje_nuevo_telefono_detalle' => $plan_canje_nuevo_telefono_detalle
+            ] = $_REQUEST;
+
+            # Objetengo datos telefono a vender
+            $telefono_vendido = DB::findBy('stock_telefonos', ['imei' => $imei_telefono_vender]);
+            $telefono_vendido = reset($telefono_vendido);
+
+            # Objetengo ID cliente
+            $id_cliente = explode('ID: ', $plan_canje_nuevo_telefono_cliente)[1];
+
+            # Insert de venta
+            $status = DB::insert('ventas_plan_canje', [
+                'id_stock_vendido' => $telefono_vendido['id'],
+                'id_client' => $id_cliente,
+                'id_vendedor' => 1,
+                'valor_cobrado' => $plan_canje_nuevo_telefono_precio_venta,
+                'pago_en_efectivo' => $plan_canje_nuevo_telefono_pago_en_efectivo,
+                'pago_en_CC' => $plan_canje_nuevo_telefono_pago_cc,
+                'detalle' => $plan_canje_nuevo_telefono_detalle
+            ]);
+
+            if (!$status) {
+                $_SESSION['notifications'] = Helper::error('Hubo un error.');
+                throw new Exception('No se pudo hacer el insert::ventas_plan_canje');
+            }
+
+            # Actualizamos stock de celular vendido
+            $status = DB::query("UPDATE stock_telefonos SET fecha_venta = now(), vendido = 1 WHERE id = " .  $telefono_vendido['id']);
+
+            $_SESSION['notifications'] = Helper::success('Stock agregado');
+        } catch (Exception $e) {
+            Logger::error('Products', 'Error in addVentaPlanCajeNo ->' . $e->getMessage());
         }
     }
 }

@@ -88,10 +88,11 @@ if (!empty($var_products)) :
 
                                         <div class="step3_venta" style="display: none;">
                                             <form method="POST" autocomplete="OFF">
-                                                <input type="hidden" name="plan_canje" value="0">
+                                                <input type="hidden" name="venta_plan_canje_no" value="1">
                                                 <div class="mb-3">
                                                     <label for="imei" class="form-label">Imei telefono a vender</label>
-                                                    <input disabled id="imei_telefono_vender" type="text" name="telefono" placeholder="IMEI" autocomplete="OFF" value="<?= $telefono['imei'] ?>">
+                                                    <input disabled type="text"  placeholder="IMEI" value="<?= $telefono['imei'] ?>">
+                                                    <input type="hidden" name="imei_telefono_vender" placeholder="IMEI" autocomplete="OFF" value="<?= $telefono['imei'] ?>">
                                                 </div>
 
                                                 <?php include '../template/components/stock_telefonos/datos_nuevo_telefono_entrante.php'; ?>
