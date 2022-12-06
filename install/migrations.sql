@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2022 a las 22:17:35
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.2.34
+-- Host: 127.0.0.1
+-- Generation Time: Dec 07, 2022 at 12:26 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,39 +18,100 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `project_sale`
+-- Database: `project_sale`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accesorios`
+-- Table structure for table `accesorios`
 --
 
 CREATE TABLE `accesorios` (
   `id` int(11) NOT NULL,
   `tipo` varchar(255) NOT NULL,
-  `modelos` text NOT NULL
+  `modelos` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accesorios`
+-- Dumping data for table `accesorios`
 --
 
 INSERT INTO `accesorios` (`id`, `tipo`, `modelos`) VALUES
-(1, 'Funda anti-shock  ', '7/8'),
-(3, 'Funda anti-shock  ', '7/8 PLUS'),
-(4, 'Funda anti-shock  ', 'X/XS'),
-(5, 'Funda anti-shock  ', 'XS MAX'),
-(6, 'Silicone Case', '7/8'),
-(7, 'Silicone Case', '7/8 PLUS'),
-(8, 'Silicone Case', 'X/XS'),
-(9, 'Silicone Case', 'XS MAX');
+(1, 'Funda anti-shock', '7/8'),
+(2, 'Funda anti-shock', '7/8 PLUS'),
+(3, 'Funda anti-shock', 'X/XS'),
+(4, 'Funda anti-shock', 'XS MAX'),
+(5, 'Funda anti-shock', 'XR'),
+(6, 'Funda anti-shock', '11'),
+(7, 'Funda anti-shock', '11 PRO'),
+(8, 'Funda anti-shock', '11 PRO MAX'),
+(9, 'Funda anti-shock', '12/12 PRO'),
+(10, 'Funda anti-shock', '12 PRO MAX'),
+(11, 'Funda anti-shock', '13'),
+(12, 'Funda anti-shock', '13 PRO'),
+(13, 'Funda anti-shock', '13 PRO MAX'),
+(14, 'Funda anti-shock', '14'),
+(15, 'Funda anti-shock', '14 PRO'),
+(16, 'Funda anti-shock', '14 PRO MAX'),
+(17, 'Silicone Case', '7/8'),
+(18, 'Silicone Case', '7/8 PLUS'),
+(19, 'Silicone Case', 'X/XS'),
+(20, 'Silicone Case', 'XS MAX'),
+(21, 'Silicone Case', 'XR'),
+(22, 'Silicone Case', '11'),
+(23, 'Silicone Case', '11 PRO'),
+(24, 'Silicone Case', '11 PRO MAX'),
+(25, 'Silicone Case', '12/12 PRO'),
+(26, 'Silicone Case', '12 PRO MAX'),
+(27, 'Silicone Case', '13'),
+(28, 'Silicone Case', '13 PRO'),
+(29, 'Silicone Case', '13 PRO MAX'),
+(30, 'Puffer Case', '7/8'),
+(31, 'Puffer Case', '7/8 PLUS'),
+(32, 'Puffer Case', 'XS MAX'),
+(33, 'Puffer Case', 'X/XS'),
+(34, 'Puffer Case', 'XR'),
+(35, 'Puffer Case', '11 '),
+(36, 'Puffer Case', '11 PRO'),
+(37, 'Puffer Case', '11 PRO MAX'),
+(38, 'Puffer Case', '12/12 PRO'),
+(39, 'Puffer Case', '12 PRO MAX'),
+(40, 'Puffer Case', '13 '),
+(41, 'Puffer Case', '13 PRO'),
+(42, 'Puffer Case', '13 PRO MAX'),
+(43, 'Puffer Case', '14'),
+(44, 'Puffer Case', '14 PRO'),
+(45, 'Puffer Case', '14 PRO MAX'),
+(46, 'Vidrio 9D', '7/8'),
+(47, 'Vidrio 9D', '7/8 PLUS'),
+(48, 'Vidrio 9D', 'X/XS/11 PRO'),
+(49, 'Vidrio 9D', 'XS MAX/11 PRO MAX'),
+(50, 'Vidrio 9D', 'XR/11'),
+(51, 'Vidrio 9D', '12/12 PRO'),
+(52, 'Vidrio 9D', '12 PRO MAX'),
+(53, 'Vidrio 9D', '13/13 PRO'),
+(54, 'Vidrio 9D', '13 PRO MAX'),
+(55, 'Fuente 5W', NULL),
+(56, 'Fuente 20W', NULL),
+(57, 'Cable 1M', NULL),
+(58, 'Cable tipo C', NULL),
+(59, 'Airpods', NULL),
+(60, 'Airtag', NULL),
+(61, 'Funda Magsafe', '13'),
+(62, 'Funda Magsafe', '13 PRO'),
+(63, 'Funda Magsafe', '13 PRO MAX'),
+(64, 'Glass Camara', '11'),
+(65, 'Glass Camara', '11 Pro'),
+(66, 'Glass Camara', '12'),
+(67, 'Glass Camara', '13'),
+(68, 'Glass Camara', '13 PRO'),
+(69, 'Glass Camara', '13 PRO MAX');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `balance`
+-- Table structure for table `balance`
 --
 
 CREATE TABLE `balance` (
@@ -63,7 +124,7 @@ CREATE TABLE `balance` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `client`
+-- Table structure for table `client`
 --
 
 CREATE TABLE `client` (
@@ -75,17 +136,17 @@ CREATE TABLE `client` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `client`
+-- Dumping data for table `client`
 --
 
 INSERT INTO `client` (`id`, `name`, `telefono`, `ciudad`, `n_comisionista`) VALUES
 (6, 'Pepito', '', '', ''),
-(7, 'a', '', '', '');
+(7, 'Josesito', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `gastos_fijos`
+-- Table structure for table `gastos_fijos`
 --
 
 CREATE TABLE `gastos_fijos` (
@@ -96,28 +157,10 @@ CREATE TABLE `gastos_fijos` (
   `fecha_vencimiento` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `gastos_fijos`
---
-
-INSERT INTO `gastos_fijos` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(12, 'Mutual', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 'Alquiler departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 'Expensas departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'Agua departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 'Wi fi departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 'Luz departamento', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 'Alquiler oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 'Expensas oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 'Agua oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 'Luz oficina', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 'Jano', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 'Otro', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `gastos_variables`
+-- Table structure for table `gastos_variables`
 --
 
 CREATE TABLE `gastos_variables` (
@@ -128,22 +171,10 @@ CREATE TABLE `gastos_variables` (
   `fecha_vencimiento` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `gastos_variables`
---
-
-INSERT INTO `gastos_variables` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
-(5, 'Variable 2', 563.65, '0000-00-00 00:00:00', '2022-11-19 00:00:00'),
-(6, 'Variable ', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, '3', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, '5', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 'd', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 'a', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `logs`
+-- Table structure for table `logs`
 --
 
 CREATE TABLE `logs` (
@@ -158,23 +189,42 @@ CREATE TABLE `logs` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pending`
+-- Table structure for table `pending`
 --
 
 CREATE TABLE `pending` (
   `id` int(11) NOT NULL,
+  `concepto` varchar(255) NOT NULL,
   `creado` datetime NOT NULL DEFAULT current_timestamp(),
   `por_pagar_a_proveedores` tinyint(1) NOT NULL DEFAULT current_timestamp(),
   `por_cobrar` tinyint(1) NOT NULL,
   `monto` float NOT NULL,
   `proveedor` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL
+  `cliente` int(11) NOT NULL,
+  `from_module` varchar(255) NOT NULL,
+  `pagado_cobrado` tinyint(1) NOT NULL,
+  `fecha_actualizacion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `stock_telefonos`
+-- Table structure for table `stock_accesorios`
+--
+
+CREATE TABLE `stock_accesorios` (
+  `id` int(11) NOT NULL,
+  `id_accesorio` int(11) NOT NULL,
+  `costo` float NOT NULL,
+  `precio_venta` float NOT NULL,
+  `vendido` tinyint(1) NOT NULL,
+  `fecha_venta` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_telefonos`
 --
 
 CREATE TABLE `stock_telefonos` (
@@ -194,22 +244,10 @@ CREATE TABLE `stock_telefonos` (
   `fecha_venta` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `stock_telefonos`
---
-
-INSERT INTO `stock_telefonos` (`id`, `product_id`, `imei`, `bateria`, `capacidad`, `precio_lista`, `precio_mayorista`, `precio_venta`, `costo`, `producto_sellado`, `plan_canje`, `fecha_ingreso`, `vendido`, `fecha_venta`) VALUES
-(1, 2, 123, 12, '256', 123123, 123123, 1212, 123123, 1, 0, '2022-11-21 00:00:00', 0, NULL),
-(2, 2, 121111111, 12, '26', 1, 1, 1, 1, 0, 0, '2022-11-24 00:00:00', 0, NULL),
-(3, 3, 1111, 111, '9', 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(4, 3, 1111, 111, '', 111, 111, 111, 111, 1, 0, '2022-11-16 00:00:00', 0, NULL),
-(5, 2, 2147483647, 1, '', 12, 13, 14, 15, 1, 0, '2022-11-25 00:00:00', 0, NULL),
-(6, 3, 99999, 99, '', 10000, 10000, 10000, 10000, 0, 0, '2022-11-30 00:00:00', 0, NULL);
-
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -219,7 +257,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`id`, `nombre`, `telefono`) VALUES
@@ -229,32 +267,99 @@ INSERT INTO `supplier` (`id`, `nombre`, `telefono`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `telefonos`
+-- Table structure for table `telefonos`
 --
 
 CREATE TABLE `telefonos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `modelo` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `capacidad` int(11) NOT NULL,
-  `categoria` enum('telefono','accesorio') COLLATE utf8mb4_unicode_ci NOT NULL
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `telefonos`
+-- Dumping data for table `telefonos`
 --
 
-INSERT INTO `telefonos` (`id`, `nombre`, `modelo`, `color`, `capacidad`, `categoria`) VALUES
-(1, 'Iphone', '11 PRO', 'Gold', 64, 'telefono'),
-(2, 'Iphone', '13 PRO', 'Black', 256, 'telefono'),
-(3, 'Iphone', '11 Pro', 'Gold', 54, 'telefono'),
-(6, 'Iphone', '3232', 'Gold', 21, 'telefono');
+INSERT INTO `telefonos` (`id`, `nombre`, `modelo`, `color`) VALUES
+(1, 'iPhone', '8', 'Silver'),
+(2, 'iPhone', '8', 'Space Grey'),
+(3, 'iPhone', '8', 'Gold'),
+(4, 'iPhone', '8 Plus', 'Silver'),
+(5, 'iPhone', '8 Plus', 'Space Grey'),
+(6, 'iPhone', '8 Plus', 'Gold'),
+(7, 'iPhone', '8 Plus', 'Product Red'),
+(8, 'iPhone', 'X', 'Silver'),
+(9, 'iPhone', 'X', 'Space Grey'),
+(10, 'iPhone', 'XR', 'Product Red'),
+(11, 'iPhone', 'XR', 'Yellow'),
+(12, 'iPhone', 'XR', 'White'),
+(13, 'iPhone', 'XR', 'Coral'),
+(14, 'iPhone', 'XR', 'Black'),
+(15, 'iPhone', 'XR', 'Blue'),
+(16, 'iPhone', 'XS', 'Silver'),
+(17, 'iPhone', 'XS', 'Space Grey'),
+(18, 'iPhone', 'XS', 'Gold'),
+(19, 'iPhone', 'XS Max', 'Gold'),
+(20, 'iPhone', 'XS Max', 'Silver'),
+(21, 'iPhone', 'XS Max', 'Space Grey'),
+(22, 'iPhone', '11', 'Purple'),
+(23, 'iPhone', '11', 'Green'),
+(24, 'iPhone', '11', 'White'),
+(25, 'iPhone', '11', 'Black'),
+(26, 'iPhone', '11', 'Yellow'),
+(27, 'iPhone', '11', 'Product Red'),
+(28, 'iPhone', '11 Pro', 'Silver'),
+(29, 'iPhone', '11 Pro', 'Space Grey'),
+(30, 'iPhone', '11 Pro', 'Gold'),
+(31, 'iPhone', '11 Pro', 'Midnight Green'),
+(32, 'iPhone', '11 Pro Max', 'Silver'),
+(33, 'iPhone', '11 Pro Max', 'Space Grey'),
+(34, 'iPhone', '11 Pro Max', 'Gold'),
+(35, 'iPhone', '11 Pro Max', 'Midnight Green'),
+(36, 'iPhone', '12', 'Black'),
+(37, 'iPhone', '12', 'White'),
+(38, 'iPhone', '12', 'Blue'),
+(39, 'iPhone', '12', 'Green'),
+(40, 'iPhone', '12', 'Product Red'),
+(41, 'iPhone', '12', 'Purple'),
+(42, 'iPhone', '12 Mini', 'Black'),
+(43, 'iPhone', '12 Mini', 'White'),
+(44, 'iPhone', '12 Mini', 'Blue'),
+(45, 'iPhone', '12 Mini', 'Green'),
+(46, 'iPhone', '12 Mini', 'Product Red'),
+(47, 'iPhone', '12 Mini', 'Purple'),
+(48, 'iPhone', '12 Pro', 'Gold'),
+(49, 'iPhone', '12 Pro', 'Pacific Blue'),
+(50, 'iPhone', '12 Pro', 'Silver'),
+(51, 'iPhone', '12 Pro', 'Graphite'),
+(52, 'iPhone', '12 Pro Max', 'Gold'),
+(53, 'iPhone', '12 Pro Max', 'Pacific Blue'),
+(54, 'iPhone', '12 Pro Max', 'Silver'),
+(55, 'iPhone', '12 Pro Max', 'Graphite'),
+(56, 'iPhone', '13', 'Pink'),
+(57, 'iPhone', '13', 'Blue'),
+(58, 'iPhone', '13', 'Midnight'),
+(59, 'iPhone', '13', 'Starlight'),
+(60, 'iPhone', '13', 'Product Red'),
+(61, 'iPhone', '13 Mini', 'Pink'),
+(62, 'iPhone', '13 Mini', 'Blue'),
+(63, 'iPhone', '13 Mini', 'Midnight'),
+(64, 'iPhone', '13 Mini', 'Starlight'),
+(65, 'iPhone', '13 Mini', 'Product Red'),
+(66, 'iPhone', '13 Pro', 'Graphite'),
+(67, 'iPhone', '13 Pro', 'Gold'),
+(68, 'iPhone', '13 Pro', 'Sierra Blue'),
+(69, 'iPhone', '13 Pro', 'Silver'),
+(70, 'iPhone', '13 Pro Max', 'Graphite'),
+(71, 'iPhone', '13 Pro Max', 'Gold'),
+(72, 'iPhone', '13 Pro Max', 'Sierra Blue'),
+(73, 'iPhone', '13 Pro Max', 'Silver');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -265,7 +370,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `fullname`, `uid`) VALUES
@@ -274,7 +379,7 @@ INSERT INTO `users` (`id`, `email`, `fullname`, `uid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user_roles`
+-- Table structure for table `user_roles`
 --
 
 CREATE TABLE `user_roles` (
@@ -285,7 +390,20 @@ CREATE TABLE `user_roles` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas_plan_canje`
+-- Table structure for table `ventas_accesorios`
+--
+
+CREATE TABLE `ventas_accesorios` (
+  `id` int(11) NOT NULL,
+  `id_accesorio_stock_vendido` int(11) NOT NULL,
+  `id_vendedor` int(11) NOT NULL,
+  `valor_cobrado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ventas_plan_canje`
 --
 
 CREATE TABLE `ventas_plan_canje` (
@@ -300,41 +418,41 @@ CREATE TABLE `ventas_plan_canje` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `accesorios`
+-- Indexes for table `accesorios`
 --
 ALTER TABLE `accesorios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `balance`
+-- Indexes for table `balance`
 --
 ALTER TABLE `balance`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `client`
+-- Indexes for table `client`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `gastos_fijos`
+-- Indexes for table `gastos_fijos`
 --
 ALTER TABLE `gastos_fijos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `gastos_variables`
+-- Indexes for table `gastos_variables`
 --
 ALTER TABLE `gastos_variables`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `logs`
+-- Indexes for table `logs`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`),
@@ -342,143 +460,167 @@ ALTER TABLE `logs`
   ADD KEY `seller` (`seller`);
 
 --
--- Indices de la tabla `pending`
+-- Indexes for table `pending`
 --
 ALTER TABLE `pending`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `stock_telefonos`
+-- Indexes for table `stock_accesorios`
+--
+ALTER TABLE `stock_accesorios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `stock_telefonos`
 --
 ALTER TABLE `stock_telefonos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indices de la tabla `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `telefonos`
+-- Indexes for table `telefonos`
 --
 ALTER TABLE `telefonos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `user_roles`
+-- Indexes for table `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ventas_plan_canje`
+-- Indexes for table `ventas_accesorios`
+--
+ALTER TABLE `ventas_accesorios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ventas_plan_canje`
 --
 ALTER TABLE `ventas_plan_canje`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `accesorios`
+-- AUTO_INCREMENT for table `accesorios`
 --
 ALTER TABLE `accesorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT de la tabla `balance`
+-- AUTO_INCREMENT for table `balance`
 --
 ALTER TABLE `balance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `client`
+-- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `gastos_fijos`
+-- AUTO_INCREMENT for table `gastos_fijos`
 --
 ALTER TABLE `gastos_fijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de la tabla `gastos_variables`
+-- AUTO_INCREMENT for table `gastos_variables`
 --
 ALTER TABLE `gastos_variables`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `logs`
+-- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pending`
+-- AUTO_INCREMENT for table `pending`
 --
 ALTER TABLE `pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT de la tabla `stock_telefonos`
+-- AUTO_INCREMENT for table `stock_accesorios`
+--
+ALTER TABLE `stock_accesorios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `stock_telefonos`
 --
 ALTER TABLE `stock_telefonos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT de la tabla `supplier`
+-- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT de la tabla `telefonos`
+-- AUTO_INCREMENT for table `telefonos`
 --
 ALTER TABLE `telefonos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `user_roles`
+-- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ventas_plan_canje`
+-- AUTO_INCREMENT for table `ventas_accesorios`
+--
+ALTER TABLE `ventas_accesorios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `ventas_plan_canje`
 --
 ALTER TABLE `ventas_plan_canje`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `logs`
+-- Constraints for table `logs`
 --
 ALTER TABLE `logs`
   ADD CONSTRAINT `product` FOREIGN KEY (`product`) REFERENCES `telefonos` (`id`),
   ADD CONSTRAINT `seller` FOREIGN KEY (`seller`) REFERENCES `users` (`id`);
 
 --
--- Filtros para la tabla `stock_telefonos`
+-- Constraints for table `stock_telefonos`
 --
 ALTER TABLE `stock_telefonos`
   ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `telefonos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
