@@ -68,11 +68,11 @@ require('../config/core.php');
                                 <input type="date" class="form-control" name="gasto_fijo_fecha_vencimiento"
                                     id="gasto_fijo_fecha_vencimiento">
                             </div>
-
-                            <label for="gasto_fijo_fecha_pago" class="col-sm-5 col-form-label">Fecha de pago</label>
-                            <div class="col-sm-7">
-                                <input type="date" class="form-control" name="gasto_fijo_fecha_pago"
-                                    id="gasto_fijo_fecha_pago">
+                            
+                            <div> 
+                            <label for="flexCheckDefault" class="form-check-label">Pagado</label>
+                            <input class="form-check-input" type="checkbox" name="gasto_fijo_pagado_cobrado"
+                            value="1">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -112,11 +112,10 @@ require('../config/core.php');
                                 <input type="date" class="form-control" name="gasto_variable_fecha_vencimiento"
                                     id="gasto_variable_fecha_vencimiento">
                             </div>
-
-                            <label for="gasto_variable_fecha_pago" class="col-sm-5 col-form-label">Fecha de pago</label>
                             <div class="col-sm-7">
-                                <input type="date" class="form-control" name="gasto_variable_fecha_pago"
-                                    id="gasto_variable_fecha_pago">
+                                <label for="flexCheckDefault" class="form-check-label">Pagado</label>
+                                <input class="form-check-input" type="checkbox" name="gasto_variable_pagado_cobrado"
+                            value="1">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -138,7 +137,7 @@ require('../config/core.php');
                 <th scope="col">Concepto</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Fecha de vencimiento</th>
-                <th scope="col">Fecha de pago</th>
+                <th scope="col">Pagado</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -184,9 +183,9 @@ require('../config/core.php');
                         <input type="date" class="form-control" name="gasto_fijo_update_fecha_vencimiento"
                             value="<?=date('Y-m-d', strtotime($gastoFijo['fecha_vencimiento'])) ?>">
 
-                        <label for="exampleInputEmail1" class="form-label">Fecha de pago</label>
-                        <input type="date" class="form-control" name="gasto_fijo_update_fecha_pago"
-                            value="<?= $gastoFijo['fecha_pago'] ?>">
+                        <label for="flexCheckDefault" class="form-check-label">Pagado</label>
+                        <input class="form-check-input" type="checkbox" name="gasto_fijo_update_pagado_cobrado"
+                            value="1">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -199,10 +198,10 @@ require('../config/core.php');
             <td><?= $gastoFijo['concepto'] ?></td>
             <td><?= $gastoFijo['monto'] ?></td>
             <td><?=  date('d-m-Y', strtotime($gastoFijo['fecha_vencimiento'])) ?></td>
-            <?php if ($gastoFijo['fecha_pago'] != '0000-00-00 00:00:00'):?>
-            <td><?= date('d-m-Y', strtotime($gastoFijo['fecha_pago'])) ?></td>
+            <?php if ($gastoFijo['pagado_cobrado']):?>
+            <td>Pagado</td>
             <?php else: ?>
-            <td> Pendiente</td>
+            <td>Pendiente</td>
             <?php endif; ?>
             <td style="gap: 20px; align-items: center;">
                 <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $gastoFijo['id'] ?>" role="button"
@@ -228,7 +227,7 @@ require('../config/core.php');
                 <th scope="col">Concepto</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Fecha de vencimiento</th>
-                <th scope="col">Fecha de pago</th>
+                <th scope="col">Pagado</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -252,9 +251,6 @@ require('../config/core.php');
                             aria-label="Default select example" value="<?= $gastoVariable['concepto'] ?>">
                             <option selected value="<?= $gastoVariable['concepto'] ?>">
                                 <?= $gastoVariable['concepto'] ?> </option>
-                            <option value="Variable 2">Variable 2</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
                         </select>
 
                         <label for="exampleInputEmail1" class="form-label">Monto</label>
@@ -264,10 +260,10 @@ require('../config/core.php');
                         <label for="exampleInputEmail1" class="form-label">Fecha de vencimiento</label>
                         <input type="date" class="form-control" name="gasto_variable_update_fecha_vencimiento"
                             value="<?=date('Y-m-d', strtotime($gastoVariable['fecha_vencimiento'])) ?>">
-
-                        <label for="exampleInputEmail1" class="form-label">Fecha de pago</label>
-                        <input type="date" class="form-control" name="gasto_variable_update_fecha_pago"
-                            value="<?= $gastoVariable['fecha_pago'] ?>">
+                        
+                        <label for="exampleInputEmail1" class="form-label">Pagado</label>
+                        <input class="form-check-input" type="checkbox" name="gasto_variable_update_pagado_cobrado"
+                            value="<?= $gastoVariable['pagado_cobrado'] ?>">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -280,22 +276,23 @@ require('../config/core.php');
             <td><?= $gastoVariable['concepto'] ?></td>
             <td><?= $gastoVariable['monto'] ?></td>
             <td><?= date('d-m-Y', strtotime($gastoVariable['fecha_vencimiento'])) ?></td>
-            <?php if ($gastoVariable['fecha_pago'] != '0000-00-00 00:00:00'):?>
-            <td><?= date('d-m-Y', strtotime($gastoVariable['fecha_pago'])) ?></td>
+            <?php if ($gastoVariable['pagado_cobrado']):?>
+            <td>Pagado</td>
             <?php else: ?>
-            <td> Pendiente</td>
+            <td>Pendiente</td>
             <?php endif; ?>
             <td style="gap: 20px; align-items: center;">
                 <a data-bs-toggle="offcanvas" href="#offcanvasvariable_<?= $gastoVariable['id'] ?>" role="button"
                     aria-controls="offcanvas_<?= $gastoVariable['id'] ?>">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
-
-                <button style="border: none; background: transparent;" type="button"  data-bs-toggle="modal"
-                    data-bs-target="#modal_confirmar_pagado_<?= $gastoFijo['id'] ?>">
-                   <a href = #> <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> </a>
+                <form method="POST">
+                <input type="hidden" name="marcar_como_pagado" value="<?= $gastoFijo['id'] ?>"> 
+                <button type="submit"  style="border: none; background: transparent;" >
+                  <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> 
                 </button>
                 
+                </form>
                 <a href = # onclick="delete_gasto_variable(<?= $gastoVariable['id'] ?>)"
                     style="border: none; background: transparent;">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash"> </i></a>

@@ -66,7 +66,6 @@ require('../config/core.php');
                 <th scope="col">Product</th>
                 <th scope="col">Modelo</th>
                 <th scope="col">Color</th>
-                <th scope="col">Capacidad</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -91,9 +90,6 @@ require('../config/core.php');
 
                             <label for="exampleInputEmail1" class="form-label">Color</label>
                             <input type="text" class="form-control" name="product_update_color" value="<?= $product['color'] ?>">
-
-                            <label for="exampleInputEmail1" class="form-label">Capacidad</label>
-                            <input type="text" class="form-control" name="product_update_capacidad" value="<?= $product['capacidad'] ?>">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -105,7 +101,6 @@ require('../config/core.php');
                 <td><?= $product['nombre'] ?></td>
                 <td><?= $product['modelo'] ?></td>
                 <td><?= $product['color'] ?></td>
-                <td><?= $product['capacidad'] ?></td>
                 <td>
                     <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $product['id'] ?>" role="button" aria-controls="offcanvas_<?= $product['id'] ?>">
                         <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>

@@ -21,14 +21,13 @@ class Productos
     {
         try {
             $TelefonosStock = DB::get(['*'], 'stock_telefonos', ['vendido' => 0]);
-            // ddd($TelefonosStock);
-            foreach ($TelefonosStock as &$stock) {
-                $producto = DB::get(['*'], 'telefonos', ['id' => $stock['product_id']])[0];
-                $stock['modelo'] = $producto['modelo'];
-                $stock['color'] = $producto['color'];
+            if($TelefonosStock){
+                foreach ($TelefonosStock as &$stock) {
+                    $producto = DB::get(['*'], 'telefonos', ['id' => $stock['product_id']])[0];
+                    $stock['modelo'] = $producto['modelo'];
+                    $stock['color'] = $producto['color'];
+                }
             }
-
-
             return is_bool($TelefonosStock) ? $TelefonosStock = [] : $TelefonosStock;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
@@ -43,8 +42,7 @@ class Productos
             JOIN `telefonos` T ON S.product_id = T.id 
             WHERE T.nombre 
             LIKE '%$search%' 
-            OR T.modelo LIKE '%$search%' 
-            OR T.capacidad LIKE '%$search%' 
+            OR T.modelo LIKE '%$search%'  
             OR S.imei LIKE '%$search%'
             ";
             $TelefonosStock = DB::query($query, true);
@@ -62,13 +60,11 @@ class Productos
             $nombre = $_REQUEST['product_nombre'];
             $modelo = $_REQUEST['product_modelo'];
             $color  = $_REQUEST['product_color'];
-            $capacidad = $_REQUEST['product_capacidad'];
 
             DB::insert('telefonos', [
                 'nombre' => $nombre,
                 'modelo' => $modelo,
                 'color' => $color,
-                'capacidad' => $capacidad
             ]);
 
             $_SESSION['notifications'] = Helper::success('Cliente agregado');
@@ -83,14 +79,12 @@ class Productos
             $id = $_REQUEST['product_update_id'];
             $nombre = $_REQUEST['product_update_nombre'];
             $modelo = $_REQUEST['product_update_modelo'];
-            $capacidad = $_REQUEST['product_update_capacidad'];
             $color = $_REQUEST['product_update_color'];
             # ddd([$_REQUEST]);
             $update_status = DB::update('telefonos', [
                 'nombre' => $nombre,
                 'color' => $color,
                 'modelo' => $modelo,
-                'capacidad' => $capacidad
             ], [
                 'id' => $id
             ]);

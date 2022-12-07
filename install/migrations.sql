@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2022 at 12:26 AM
+-- Generation Time: Dec 08, 2022 at 12:26 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -157,6 +157,13 @@ CREATE TABLE `gastos_fijos` (
   `fecha_vencimiento` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `gastos_fijos`
+--
+
+INSERT INTO `gastos_fijos` (`id`, `concepto`, `monto`, `fecha_pago`, `fecha_vencimiento`) VALUES
+(26, 'Seguro', 350, '0000-00-00 00:00:00', '2022-12-07 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -196,15 +203,23 @@ CREATE TABLE `pending` (
   `id` int(11) NOT NULL,
   `concepto` varchar(255) NOT NULL,
   `creado` datetime NOT NULL DEFAULT current_timestamp(),
-  `por_pagar_a_proveedores` tinyint(1) NOT NULL DEFAULT current_timestamp(),
-  `por_cobrar` tinyint(1) NOT NULL,
+  `fecha_vencimiento` datetime DEFAULT NULL,
+  `por_pagar_a_proveedores` tinyint(1) DEFAULT NULL,
+  `por_cobrar` tinyint(1) DEFAULT NULL,
   `monto` float NOT NULL,
-  `proveedor` int(11) NOT NULL,
-  `cliente` int(11) NOT NULL,
+  `proveedor` int(11) DEFAULT NULL,
+  `cliente` int(11) DEFAULT NULL,
   `from_module` varchar(255) NOT NULL,
-  `pagado_cobrado` tinyint(1) NOT NULL,
-  `fecha_actualizacion` datetime NOT NULL
+  `pagado_cobrado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pending`
+--
+
+INSERT INTO `pending` (`id`, `concepto`, `creado`, `fecha_vencimiento`, `por_pagar_a_proveedores`, `por_cobrar`, `monto`, `proveedor`, `cliente`, `from_module`, `pagado_cobrado`) VALUES
+(18, 'Seguro', '2022-12-06 22:58:32', '2022-12-09 00:00:00', 1, 0, 300, NULL, NULL, 'gastos_fijos', 1),
+(19, 'Variable 1', '2022-12-07 01:13:16', '2022-12-07 00:00:00', 1, 0, 324, NULL, NULL, 'gastos_variables', 0);
 
 -- --------------------------------------------------------
 
@@ -220,6 +235,13 @@ CREATE TABLE `stock_accesorios` (
   `vendido` tinyint(1) NOT NULL,
   `fecha_venta` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `stock_accesorios`
+--
+
+INSERT INTO `stock_accesorios` (`id`, `id_accesorio`, `costo`, `precio_venta`, `vendido`, `fecha_venta`) VALUES
+(7, 2, 200, 300, 1, '2022-12-06 21:01:17');
 
 -- --------------------------------------------------------
 
@@ -400,6 +422,13 @@ CREATE TABLE `ventas_accesorios` (
   `valor_cobrado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `ventas_accesorios`
+--
+
+INSERT INTO `ventas_accesorios` (`id`, `id_accesorio_stock_vendido`, `id_vendedor`, `valor_cobrado`) VALUES
+(10, 7, 1, 300);
+
 -- --------------------------------------------------------
 
 --
@@ -540,7 +569,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `gastos_fijos`
 --
 ALTER TABLE `gastos_fijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `gastos_variables`
@@ -558,13 +587,13 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `pending`
 --
 ALTER TABLE `pending`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `stock_accesorios`
 --
 ALTER TABLE `stock_accesorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `stock_telefonos`
@@ -600,7 +629,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `ventas_accesorios`
 --
 ALTER TABLE `ventas_accesorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ventas_plan_canje`

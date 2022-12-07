@@ -68,11 +68,13 @@ class Accesorios
     {
         try {
             $TelefonosStock = DB::get(['*'] ,'stock_accesorios', ['vendido' => 0]);
+            if($TelefonosStock){
             foreach ($TelefonosStock as &$stock) {
                 $producto = DB::get(['*'] ,'accesorios', ['id' => $stock['id_accesorio']])[0];
                 $stock['tipo'] = $producto['tipo'];
                 $stock['modelo'] = $producto['modelos'];
             }
+        }
             return is_bool($TelefonosStock) ? $TelefonosStock = [] : $TelefonosStock;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());

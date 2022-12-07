@@ -10,7 +10,7 @@ class Gastos
     public static function getGastosFijos():? array
     {
         try {
-            $gastosFijo = DB::get(['*'] ,'gastos_fijos');
+            $gastosFijo = DB::get(['*'] ,'pending', ['from_module' => 'gastos_fijos']);
             return is_bool($gastosFijo) ? $gastosFijo = [] : $gastosFijo;
         } catch (Exception $e) {
             Logger::error('Proveedor', 'Error in add_proveedor ->' . $e->getMessage());
@@ -20,7 +20,7 @@ class Gastos
     public static function getGastosVariables():? array
     {
         try {
-            $gastosVariable = DB::get(['*'] ,'gastos_variables');
+            $gastosVariable = DB::get(['*'] ,'pending', ['from_module' => 'gastos_variables']);
             return is_bool($gastosVariable) ? $gastosVariable = [] : $gastosVariable;
         } catch (Exception $e) {
             Logger::error('gastoVariable', 'Error in add_proveedor ->' . $e->getMessage());
@@ -32,15 +32,20 @@ class Gastos
         try {
             $concepto = $_REQUEST['gasto_fijo_concepto'];
             $monto = $_REQUEST['gasto_fijo_monto'];
-            $fechaPago  = $_REQUEST['gasto_fijo_fecha_pago'];
+            $pagado_cobrado  = $_REQUEST['gasto_fijo_pagado_cobrado'];
             $fechaVencimiento = $_REQUEST['gasto_fijo_fecha_vencimiento'];
-
-            DB::insert('gastos_fijos', [
+            $creado = date('Y-m-d H:i:s');
+            DB::insert('pending', [
                 'concepto' => $concepto,
                 'monto' => $monto,
-                'fecha_pago' => $fechaPago,
-                'fecha_vencimiento' => $fechaVencimiento
+                'creado' => $creado,
+                'fecha_vencimiento' => $fechaVencimiento,
+                'por_pagar_a_proveedores' => 1,
+                'por_cobrar' => 0,
+                'pagado_cobrado' => 0,
+                'from_module' => 'gastos_fijos',
             ]);
+
 
             $_SESSION['notifications'] = Helper::success('Gasto fijo agregado');
         } catch (Exception $e) {
@@ -53,14 +58,18 @@ class Gastos
         try {
             $concepto = $_REQUEST['gasto_variable_concepto'];
             $monto = $_REQUEST['gasto_variable_monto'];
-            $fechaPago  = $_REQUEST['gasto_variable_fecha_pago'];
+            $pagado_cobrado  = $_REQUEST['gasto_variable_pagado_cobrado'];
             $fechaVencimiento = $_REQUEST['gasto_variable_fecha_vencimiento'];
-
-            $update_status=  DB::insert('gastos_variables', [
+            $creado = date('Y-m-d H:i:s');
+            $update_status=  DB::insert('pending', [
                 'concepto' => $concepto,
+                'creado' => $creado,
                 'monto' => $monto,
-                'fecha_pago' => $fechaPago,
-                'fecha_vencimiento' => $fechaVencimiento
+                'fecha_vencimiento' => $fechaVencimiento,
+                'por_pagar_a_proveedores' => 1,
+                'por_cobrar' => 0,
+                'pagado_cobrado' => 0,
+                'from_module' => 'gastos_variables',
             ]);
 
             if ($update_status) {
@@ -123,13 +132,13 @@ class Gastos
             $id = $_REQUEST['gasto_fijo_update_id'];
             $concepto = $_REQUEST['gasto_fijo_update_concepto'];
             $monto = $_REQUEST['gasto_fijo_update_monto'];
-            $fechaPago  = $_REQUEST['gasto_fijo_update_fecha_pago'];
+            $pagado_cobrado  = isset($_REQUEST['gasto_fijo_update_pagado_cobrado']) ? $_REQUEST['gasto_fijo_update_pagado_cobrado'] : 0;
             $fechaVencimiento = $_REQUEST['gasto_fijo_update_fecha_vencimiento'];
 
-            $update_status = DB::update('gastos_fijos', [
+            $update_status = DB::update('pending', [
                 'concepto' => $concepto,
                 'monto' => $monto,
-                'fecha_pago' => $fechaPago,
+                'pagado_cobrado' => $pagado_cobrado,
                 'fecha_vencimiento' => $fechaVencimiento
             ], [
                 'id' => $id
@@ -151,13 +160,13 @@ class Gastos
             $id = $_REQUEST['gasto_variable_update_id'];
             $concepto = $_REQUEST['gasto_variable_update_concepto'];
             $monto = $_REQUEST['gasto_variable_update_monto'];
-            $fechaPago  = $_REQUEST['gasto_variable_update_fecha_pago'];
+            $pagado_cobrado  = isset($_REQUEST['gasto_variable_update_pagado_cobrado']) ? $_REQUEST['gasto_fijo_update_pagado_cobrado'] : 0;
             $fechaVencimiento = $_REQUEST['gasto_variable_update_fecha_vencimiento'];
 
-            $update_status = DB::update('gastos_variables', [
+            $update_status = DB::update('pending', [
                 'concepto' => $concepto,
                 'monto' => $monto,
-                'fecha_pago' => $fechaPago,
+                'pagado_cobrado' => $pagado_cobrado,
                 'fecha_vencimiento' => $fechaVencimiento
             ], [
                 'id' => $id

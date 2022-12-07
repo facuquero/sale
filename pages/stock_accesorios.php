@@ -118,6 +118,7 @@ require('../config/core.php');
             </tr>
         </thead>
         <tbody>
+        <?php if(!empty($_SESSION['Accesorios']::getStockAccesorios())) : ?> 
             <?php foreach (Accesorios::getStockAccesorios() as $accesorio) : ?>
             <tr>
                 <td scope="col"><?= $accesorio['id'] ?></td>
@@ -162,8 +163,9 @@ require('../config/core.php');
             </tr>
             <?php endforeach; ?>
         </tbody>
+        <?php endif; ?>
     </table>
-
+    
     <?php require_once '../template/sections/footer.php'; ?>
 </body>
 
