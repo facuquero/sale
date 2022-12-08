@@ -135,7 +135,12 @@ class Productos
                 'plan_canje' => $plan_canje,
                 'telefono' => $telefono,
             ] = $_REQUEST;
-            $id_telefono = explode('ID: ', $telefono)[1];
+            $id_telefono = explode('ID: ', $telefono);
+            if(!isset($id_telefono[1])){
+                $_SESSION['notifications'] = Helper::error('Hubo un dato mal cargado. Revisar nuevamente');
+                return;
+            }
+            $id_telefono = $id_telefono[1];
 
 
             $statusInsert = DB::insert('stock_telefonos', [
@@ -186,8 +191,7 @@ class Productos
 
             # Obtenemos id el modelo
             $id_telefono = explode('ID: ', $plan_canje_modelo_telefono)[1];
-
-
+            
             # Insert en tabla Telefonos
             $status = DB::insert('stock_telefonos', [
                 'product_id' => $id_telefono,
@@ -203,12 +207,13 @@ class Productos
                 'fecha_ingreso' => $plan_canje_fecha_ingreso,
                 'vendido' => 0,
             ]);
+
             $stock_recibido = DB::query("SELECT LAST_INSERT_ID();", true);
             $id_stock_recibido = reset($stock_recibido);
             $id_stock_recibido = $id_stock_recibido['LAST_INSERT_ID()'];
             $stock_telefonos_insert = DB::findById('stock_telefonos', $id_stock_recibido);
             $id_stock_recibido = $stock_telefonos_insert['id'];
-
+            
             if (!$status) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el insert::stock_telefonos');
@@ -218,12 +223,12 @@ class Productos
             $id = reset($stock_telefonos_insert);
             $id = $id['LAST_INSERT_ID()'];
             $stock_telefonos_insert = DB::findById('stock_telefonos', $id);
-
+            
             if (!$stock_telefonos_insert) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el findById::stock_telefonos');
             }
-
+            
             # Insert en ventas_plan_canje
             // necesitamos imei de telefono vendido para sacar sus datos.
             $telefono_vendido = DB::findBy('stock_telefonos', ['imei' => $imei_telefono_vender]);
@@ -240,7 +245,7 @@ class Productos
                 'pago_en_CC' => $plan_canje_nuevo_telefono_pago_cc,
                 'detalle' => $plan_canje_nuevo_telefono_detalle
             ]);
-
+            
             if (!$status) {
                 $_SESSION['notifications'] = Helper::error('Hubo un error.');
                 throw new Exception('No se pudo hacer el insert::ventas_plan_canje');

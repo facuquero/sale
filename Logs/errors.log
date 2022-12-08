@@ -1,5 +1,0 @@
-[Thu, 01 Dec 2022 20:36:54 -0300] Error en modulo DB : Error in insert -> Cannot add or update a child row: a foreign key constraint fails (`project_sale`.`stock_telefonos`, CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `telefonos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
-[Thu, 01 Dec 2022 20:39:58 -0300] Error en modulo DB : Error in insert -> Unknown column 'precio_lista' in 'field list'
-[Thu, 01 Dec 2022 20:40:31 -0300] Error en modulo DB : Error in insert -> Unknown column 'precio_lista' in 'field list'
-[Thu, 01 Dec 2022 20:40:40 -0300] Error en modulo DB : Error in insert -> Unknown column 'precio_lista' in 'field list'
-[Thu, 01 Dec 2022 20:41:03 -0300] Error en modulo DB : Error in insert -> Unknown column 'precio_lista' in 'field list'
