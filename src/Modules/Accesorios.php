@@ -6,17 +6,17 @@ class Accesorios
     {
         // return getProducts();
     }
-    public static function venderAccesorio():? array
+    public static function venderAccesorio()
     {
         try {
-            $accesorio = DB::get(['*'] ,'stock_accesorios', ['id' =>  $_REQUEST['accesorio_venta_id']])[0];
+            $accesorio = DB::get(['*'], 'stock_accesorios', ['id' =>  $_REQUEST['accesorio_venta_id']])[0];
             $id_accesorio_stock = $accesorio['id_accesorio'];
             $id = $_REQUEST['accesorio_venta_id'];
             $costo = $accesorio['costo'];
             $vendido = 1;
             $precio_venta = $_REQUEST['venta_precio_accesorio'];
             $fecha_venta = date('Y-m-d H:i:s');
-            
+
             $update_status = DB::update('stock_accesorios', [
                 'id_accesorio' => $id_accesorio_stock,
                 'costo' => $costo,
@@ -26,21 +26,25 @@ class Accesorios
             ], [
                 'id' => $id
             ]);
-            $insert_status= DB::insert('ventas_accesorios', [
+            $insert_status = DB::insert('ventas_accesorios', [
                 'id_accesorio_stock_vendido' => $_REQUEST['accesorio_venta_id'],
                 'id_vendedor' => '1',
                 'valor_cobrado' => $precio_venta
             ]);
 
-            return is_bool($insert_status) ? $insert_status = [] : $insert_status;
+            if ($insert_status) {
+                $_SESSION['notifications'] = Helper::success('Venta registrada');
+            }else{
+                $_SESSION['notifications'] = Helper::error('No se pudo registrar la venta');
+            }
         } catch (Exception $e) {
             Logger::error('Proveedor', 'Error in add_accesorio ->' . $e->getMessage());
         }
     }
-    public static function getAccesorios():? array
+    public static function getAccesorios(): ?array
     {
         try {
-            $Proveedor = DB::get(['*'] ,'accesorios');
+            $Proveedor = DB::get(['*'], 'accesorios');
             return is_bool($Proveedor) ? $Proveedor = [] : $Proveedor;
         } catch (Exception $e) {
             Logger::error('Proveedor', 'Error in add_accesorio ->' . $e->getMessage());
@@ -64,17 +68,17 @@ class Accesorios
         }
     }
 
-    public static function getStockAccesorios():? array
+    public static function getStockAccesorios(): ?array
     {
         try {
-            $TelefonosStock = DB::get(['*'] ,'stock_accesorios', ['vendido' => 0]);
-            if($TelefonosStock){
-            foreach ($TelefonosStock as &$stock) {
-                $producto = DB::get(['*'] ,'accesorios', ['id' => $stock['id_accesorio']])[0];
-                $stock['tipo'] = $producto['tipo'];
-                $stock['modelo'] = $producto['modelos'];
+            $TelefonosStock = DB::get(['*'], 'stock_accesorios', ['vendido' => 0]);
+            if ($TelefonosStock) {
+                foreach ($TelefonosStock as &$stock) {
+                    $producto = DB::get(['*'], 'accesorios', ['id' => $stock['id_accesorio']])[0];
+                    $stock['tipo'] = $producto['tipo'];
+                    $stock['modelo'] = $producto['modelos'];
+                }
             }
-        }
             return is_bool($TelefonosStock) ? $TelefonosStock = [] : $TelefonosStock;
         } catch (Exception $e) {
             Logger::error('Products', 'Error in add_product ->' . $e->getMessage());
@@ -89,7 +93,7 @@ class Accesorios
                 'costo_accesorio' => $costo,
                 'accesorio' => $telefono,
             ] = $_REQUEST;
-            $id_telefono = explode(':', $telefono)[1];            
+            $id_telefono = explode(':', $telefono)[1];
 
             $statusInsert = DB::insert('stock_accesorios', [
                 'id_accesorio ' => $id_telefono,
@@ -97,12 +101,11 @@ class Accesorios
                 'costo' => $costo
             ]);
 
-            if($statusInsert){
+            if ($statusInsert) {
                 $_SESSION['notifications'] = Helper::success('Stock agregado');
-            }else{
+            } else {
                 $_SESSION['notifications'] = Helper::error('Hubo un error, quejate con Quero');
             }
-
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
@@ -131,7 +134,7 @@ class Accesorios
         } catch (Exception $e) {
             Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
         }
-    } 
+    }
 
     public static function deleteAccesorio()
     {

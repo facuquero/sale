@@ -54,6 +54,7 @@ class Core
             require("../src/Modules/Gastos.php");
             require("../src/Modules/Accesorios.php");
             require("../src/Modules/Pendientes.php");
+            require("../src/Modules/Ventas.php");
             
             #   [Controllers]
             #   Enlazamos todos los controladores

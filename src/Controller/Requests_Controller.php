@@ -4,6 +4,15 @@
 function Requests_Controller()
 {
 
+    # Ventas
+    Request::getLocal('getVentasPlanCanje_search', function () {
+        Ventas::getVentasPlanCanje_search();
+    });
+
+    Request::getLocal('getVentasAccesorios_search', function () {
+        Ventas::getVentasAccesorios_search();
+    });
+
     # Clients
     Request::getLocal('client_name', function () {
         Clientes::addClients();

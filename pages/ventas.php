@@ -17,9 +17,11 @@ require('../config/core.php');
 <body>
     <?php require_once '../template/sections/navbar.php'; ?>
 
+    <?php require_once '../template/components/ventas/tabla_ventas_plan_canje.php'; ?>
+    <?php require_once '../template/components/ventas/tabla_ventas_accesorios.php'; ?>
 
     <?php require_once '../template/sections/footer.php'; ?>
-
+    <script src="../template/assets/js/pages/ventas.js"></script>
 </body>
 
 
