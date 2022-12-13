@@ -203,15 +203,17 @@ require('../config/core.php');
             <?php else: ?>
             <td>Pendiente</td>
             <?php endif; ?>
-            <td style="gap: 20px; align-items: center;">
+            <td style="align-items: center; display:flex; gap:15px">
                 <a data-bs-toggle="offcanvas" href="#offcanvas_<?= $gastoFijo['id'] ?>" role="button"
                     aria-controls="offcanvas_<?= $gastoFijo['id'] ?>">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
-                <button style="border: none; background: transparent;" type="button"  data-bs-toggle="modal"
-                    data-bs-target="#modal_confirmar_pagado_<?= $gastoFijo['id'] ?>">
-                   <a href = #> <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> </a>
+                <form method="POST">
+                <input type="hidden" name="marcar_como_pagado" value="<?= $gastoVariable['id'] ?>"> 
+                <button type="submit"  style="border: none; background: transparent;" >
+                  <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> 
                 </button>
+                </form>
                 <a href = # onclick="delete_gasto_fijo(<?= $gastoFijo['id'] ?>)" style="border: none; background: transparent;">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" class="fa fa-trash"> </i></a>
             </td>
@@ -281,13 +283,13 @@ require('../config/core.php');
             <?php else: ?>
             <td>Pendiente</td>
             <?php endif; ?>
-            <td style="gap: 20px; align-items: center;">
+            <td style="gap: 15px; align-items: center; display: flex">
                 <a data-bs-toggle="offcanvas" href="#offcanvasvariable_<?= $gastoVariable['id'] ?>" role="button"
                     aria-controls="offcanvas_<?= $gastoVariable['id'] ?>">
                     <i data-bs-toggle="tooltip" data-bs-placement="top" title="Actualizar" class="fa fa-pencil-square-o"></i>
                 </a>
                 <form method="POST">
-                <input type="hidden" name="marcar_como_pagado" value="<?= $gastoFijo['id'] ?>"> 
+                <input type="hidden" name="marcar_como_pagado" value="<?= $gastoVariable['id'] ?>"> 
                 <button type="submit"  style="border: none; background: transparent;" >
                   <i data-bs-toggle="tooltip" data-bs-placement="top" title="Marcar como pagado" class="fa fa-check" aria-hidden="true"></i> 
                 </button>

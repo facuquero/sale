@@ -10,7 +10,9 @@ class Gastos
     public static function getGastosFijos():? array
     {
         try {
-            $gastosFijo = DB::get(['*'] ,'pending', ['from_module' => 'gastos_fijos']);
+            $thisMonth = date('m');
+            $thisYear = date('Y');
+            $gastosFijo = DB::query("select * from pending where from_module = 'gastos_fijos' and MONTH(creado) = ". $thisMonth . " and YEAR(creado) = " . $thisYear, 'fetch_array');
             return is_bool($gastosFijo) ? $gastosFijo = [] : $gastosFijo;
         } catch (Exception $e) {
             Logger::error('Proveedor', 'Error in add_proveedor ->' . $e->getMessage());
@@ -20,7 +22,9 @@ class Gastos
     public static function getGastosVariables():? array
     {
         try {
-            $gastosVariable = DB::get(['*'] ,'pending', ['from_module' => 'gastos_variables']);
+            $thisMonth = date('m');
+            $thisYear = date('Y');
+            $gastosVariable = DB::query("select * from pending where from_module = 'gastos_variables' and MONTH(creado) = ". $thisMonth . " and YEAR(creado) = " . $thisYear, 'fetch_array');
             return is_bool($gastosVariable) ? $gastosVariable = [] : $gastosVariable;
         } catch (Exception $e) {
             Logger::error('gastoVariable', 'Error in add_proveedor ->' . $e->getMessage());
@@ -170,6 +174,25 @@ class Gastos
                 'fecha_vencimiento' => $fechaVencimiento
             ], [
                 'id' => $id
+            ]);
+
+            if ($update_status) {
+                $_SESSION['notifications'] = Helper::success('Proveedor actualizado');
+            } else {
+                $_SESSION['notifications'] = Helper::error('Error el proveedor no se pudo actualizar');
+            }
+        } catch (Exception $e) {
+            Logger::error('Clients', 'Error in add client ->' . $e->getMessage());
+        }
+    } 
+
+    public static function marcarComoPagado()
+    {
+        try {
+            $update_status = DB::update('pending', [
+                'pagado_cobrado' => 1,
+            ], [
+                'id' => $_REQUEST['marcar_como_pagado']
             ]);
 
             if ($update_status) {

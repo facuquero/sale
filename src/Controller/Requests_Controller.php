@@ -88,6 +88,9 @@ function Requests_Controller()
     Request::getLocal('id_gasto_variable_delete', function () {
         Gastos::deleteGastoVariable();
     });
+    Request::getLocal('marcar_como_pagado', function () {
+        Gastos::marcarComoPagado();
+    });
 
 #######accesorios
 Request::getLocal('accesorio_tipo', function(){     
@@ -111,6 +114,8 @@ Request::getLocal('costo_accesorio', function(){
     Request::getLocal('venta_precio_accesorio', function () {
         Accesorios::venderAccesorio();
     });
+
+
         
     # General
     Request::getLocal('salir', function () {
